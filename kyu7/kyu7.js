@@ -41,5 +41,17 @@ console.log(
 // our task is to write a function that takes a string and return a new string with all vowels removed.
 // For example, the string "This website is for losers LOL!" would become "Ths wbst s fr lsrs LL!".
 // Note: for this kata y isn't considered a vowel.
+
 const disemvowel = (str) => str.replace(/[aeiou]/gi, "");
 console.log(disemvowel("This website is for losers LOL!"));
+
+//? ///////////////////////////////////////////////////////////////////
+//?3.Isograms
+// An isogram is a word that has no repeating letters, consecutive or non-consecutive. Implement a function that determines whether a string that contains only letters is an isogram. Assume the empty string is an isogram. Ignore letter case.
+
+// Example: (Input --> Output)
+
+// "Dermatoglyphics" --> true "aba" --> false "moOse" --> false (ignore letter case)
+//const isIsogram = (str) => str.length === [...new Set(str.toLowerCase())].length;
+const isIsogram = (str) => str.length === new Set(str.toLowerCase()).size;
+console.log(isIsogram("moose"));
