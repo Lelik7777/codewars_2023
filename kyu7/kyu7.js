@@ -35,3 +35,11 @@ const brightest = (colorsArr) => {
 console.log(
   brightest(["#0D5D1B", "#3DCBE2", "#C0A8DD", "#BAE49F", "#A2D643", "#BBC5A3"])
 );
+//? ///////////////////////////////////////////////////////////////////////////////////////
+
+//?2. Disemvowel Trolls
+// our task is to write a function that takes a string and return a new string with all vowels removed.
+// For example, the string "This website is for losers LOL!" would become "Ths wbst s fr lsrs LL!".
+// Note: for this kata y isn't considered a vowel.
+const disemvowel = (str) => str.replace(/[aeiou]/gi, "");
+console.log(disemvowel("This website is for losers LOL!"));
