@@ -1,3 +1,3 @@
 # Codewars tasks kyu7
 
--Which color is the brightest?
+- Which color is the brightest?
