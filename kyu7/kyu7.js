@@ -62,9 +62,7 @@ console.log(isIsogram("moose"));
 //explode("102269")// return "12222666666999999999"
 //explode("312")// return "333122"
 
-const explode = (str) => [...str].map((num) => num.repeat(+num)).join('');
+const explode = (str) => [...str].map((num) => num.repeat(+num)).join("");
 console.log(explode("102269"));
 //? //////////////////////////////////////////////////////////////////////////
-
-//?5. Handshake problem
 
