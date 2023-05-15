@@ -44,8 +44,8 @@ console.log(
 
 const disemvowel = (str) => str.replace(/[aeiou]/gi, "");
 console.log(disemvowel("This website is for losers LOL!"));
-
 //? ///////////////////////////////////////////////////////////////////
+
 //?3.Isograms
 // An isogram is a word that has no repeating letters, consecutive or non-consecutive. Implement a function that determines whether a string that contains only letters is an isogram. Assume the empty string is an isogram. Ignore letter case.
 
@@ -55,3 +55,16 @@ console.log(disemvowel("This website is for losers LOL!"));
 //const isIsogram = (str) => str.length === [...new Set(str.toLowerCase())].length;
 const isIsogram = (str) => str.length === new Set(str.toLowerCase()).size;
 console.log(isIsogram("moose"));
+//? ///////////////////////////////////////////////////////////////////
+
+//?4.Digits explosion
+//Given a string made of digits [0-9], return a string where each digit is repeated a number of times equals to its value.
+//explode("102269")// return "12222666666999999999"
+//explode("312")// return "333122"
+
+const explode = (str) => [...str].map((num) => num.repeat(+num)).join('');
+console.log(explode("102269"));
+//? //////////////////////////////////////////////////////////////////////////
+
+//?5. Handshake problem
+
