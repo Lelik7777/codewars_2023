@@ -66,4 +66,54 @@ const explode = (str) => [...str].map((num) => num.repeat(+num)).join("");
 console.log(explode("102269"));
 //? //////////////////////////////////////////////////////////////////////////
 
+//?5. Head, Tail, Init and Last
 
+// Haskell has some useful functions for dealing with lists:
+
+// $ ghci
+// GHCi, version 7.6.3: http://www.haskell.org/ghc/  :? for help
+// λ head [1,2,3,4,5]
+// 1
+// λ tail [1,2,3,4,5]
+// [2,3,4,5]
+// λ init [1,2,3,4,5]
+// [1,2,3,4]
+// λ last [1,2,3,4,5]
+// 5
+// Your job is to implement these functions in your given language. Make sure it doesn't edit the array; that would cause problems! Here's a cheat sheet:
+
+// | HEAD | <----------- TAIL ------------> |
+// [  1,  2,  3,  4,  5,  6,  7,  8,  9,  10]
+// | <----------- INIT ------------> | LAST |
+
+// head [x] = x
+// tail [x] = []
+// init [x] = []
+// last [x] = x
+// Here's how I expect the functions to be called in your language:
+
+// head([1,2,3,4,5]); => 1
+// tail([1,2,3,4,5]); => [2,3,4,5]
+
+class List {
+  constructor(arr) {
+    this.arr = [...arr];
+  }
+  head() {
+    return this.arr.shift();
+  }
+  tail() {
+    return this.arr.slice(1);
+  }
+  init() {
+    return this.arr.slice(0, this.arr.length - 1);
+  }
+  last() {
+    return this.arr.at(-1);
+  }
+}
+const array = [1, 2, 3, 4, 5];
+console.log(array);
+const list = new List(array);
+console.log(list.last());
+console.log(array);

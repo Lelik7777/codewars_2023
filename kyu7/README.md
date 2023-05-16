@@ -4,4 +4,4 @@
 - Disemvowel Trolls
 - Isograms
 - Digits explosion
-
+- Head, Tail, Init and Last
