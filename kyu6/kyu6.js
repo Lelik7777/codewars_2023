@@ -59,11 +59,7 @@ console.log(duplicateEncode2("recede"));
 // For reference, the first two numbers in the Fibonacci sequence are 0 and 1, and each subsequent number is the sum of the previous two.
 //variant recursion
 const nthFiboRecursion = (n) =>
-  n < 2
-    ? 0
-    : n === 2
-    ? 1
-    : nthFiboRecursion(n - 1) + nthFiboRecursion(n - 2);
+  n < 2 ? 0 : n === 2 ? 1 : nthFiboRecursion(n - 1) + nthFiboRecursion(n - 2);
 
 //variant by for
 const nthFibo = (n) => {
@@ -77,4 +73,63 @@ console.log(nthFiboRecursion(4));
 console.log(nthFibo(4));
 //? //////////////////////////////////////////////////////////////////////////
 
-//?4
+//?4. Array Deep Count
+// You are given an array. Complete the function that returns the number of ALL elements within an array, including any nested arrays.
+
+// Examples
+// []                   -->  0
+// [1, 2, 3]            -->  3
+// ["x", "y", ["z"]]    -->  4
+// [1, 2, [3, 4, [5]]]  -->  7
+//алгоритм: перебираем циклом элементы массива и возвращаем count,который изначально равен длине массива. Если элемент является массивом, то рекурсивно вызываем эту же ф-цию и сумируем ее результат вызвова в count
+const deepCount = (arr) => {
+  let count = arr.length;
+  for (const el of arr) {
+    if (Array.isArray(el)) count += deepCount(el);
+  }
+  return count;
+};
+console.log(deepCount([1, 2, [3, 4, [5]]]));
+
+const deepCount2 = (arr) =>
+  arr.reduce(
+    (acc, cur) => acc + (Array.isArray(cur) ? deepCount2(cur) : 0),
+    arr.length
+  );
+console.log(deepCount2([1, 2, [3, 4, [5]]]));
+//? ///////////////////////////////////////////////////////////////////////////
+
+//?5.Length of missing array
+// You get an array of arrays.
+// If you sort the arrays by their length, you will see, that their length-values are consecutive.
+// But one array is missing!
+
+// You have to write a method, that return the length of the missing array.
+
+// Example:
+// [[1, 2], [4, 5, 1, 1], [1], [5, 6, 7, 8, 9]] --> 3
+
+// If the array of arrays is null/nil or empty, the method should return 0.
+
+// When an array in the array is null or empty, the method should return 0 too!
+// There will always be a missing element and its length will be always between the given arrays.
+
+// Have fun coding it and please don't forget to vote and rank this kata! :-)
+
+// I have created other katas. Have a look if you like coding and challenges.
+//алгоритм: нужно превратить матрицу в массив длин вложенных массивов и отсортировать их Далее в этой последовательности найти недостающее звено
+function getLengthOfMissingArray(arr) {
+  const lengths = (arr ?? [])
+    .map((el) => (el ? el.length : 0))
+    .sort((a, b) => a - b);
+
+  if (!lengths.length || lengths.includes(0)) return 0;
+  //проверка на пропущенный элемент в массиве
+  for (let i = 0; i < lengths.length - 1; i++) {
+    if (lengths[i + 1] !== lengths[i] + 1) return lengths[i] + 1;
+  }
+}
+
+console.log(
+  getLengthOfMissingArray([[1, 2], [4, 5, 1, 1], [1], [5, 6, 7, 8, 9]])
+);
