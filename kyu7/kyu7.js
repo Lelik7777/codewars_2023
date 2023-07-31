@@ -117,3 +117,44 @@ console.log(array);
 const list = new List(array);
 console.log(list.last());
 console.log(array);
+
+//? //////////////////////////////////////////////////////////////////////////
+//? 6.Training JS #23: methods of arrayObject---push(), pop(), shift() and unshift()
+
+// Coding in function infiniteLoop. function accept 3 parameters. The 1st parameter is arr, it's a 2D array, it contains three 1D array. The 2nd parameter is d ，it's a string. The 3rd parameter is n, it's a number.
+
+//есть матрица с тремя одномерными массивами. При вызове ф-ции infiniteLoop()  происходить смещение в каждом одномерном массиве на число n впраео или влево,в зависимости от d по кругу - если движение вправо,то последний элемент или элементы уходят вначало,а смещая остальные - общий массив как бы проворачивается по кругу
+
+//алгоримт
+//1. матрицу превратить в одномерный массив
+//2. произвести смещение -поменять массив
+//3. снова его превратить в матрицу
+//Как мне провернуть массив по кругу? Мне нужно последний элемент поставить вначало
+//реализую простой вариант смещения на один элемент
+
+const infiniteLoop = (arr, d, n) => {
+  if (d === "right") {
+    for (let i = 0; i < n; i++) {
+      arr[0].unshift(arr[2].pop());
+      arr[1].unshift(arr[0].pop());
+      arr[2].unshift(arr[1].pop());
+    }
+  }
+  if (d === "left") {
+    for (let i = 0; i < n; i++) {
+      arr[2].push(arr[0].shift());
+      arr[1].push(arr[2].shift());
+      arr[0].push(arr[1].shift());
+    }
+  }
+  return arr;
+};
+infiniteLoop(
+  [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+  ],
+  "left",
+  1
+);
