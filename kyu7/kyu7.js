@@ -158,3 +158,23 @@ infiniteLoop(
   "left",
   1
 );
+
+//? //////////////////////////////////////////////////////////////////////////
+
+//? 7. Training JS #24: methods of arrayObject---splice() and slice()
+
+//?Coding in function threeInOne. function accept 1 parameters arr, it's a 1D number array. Your task is to merge each of the 3 elements into 1 elements (sum value) and return the result.
+
+//логика: 1.мне нужно исходный массив разбить на подмассивы,каждый по три элемента,2.затем сложить элементы каждого подмассива и 3.суммы положить в новый массив
+
+const threeInOne = (arr) => {
+  const size = 3;
+  const subArr = [];
+
+  for (let i = 0; i < Math.ceil(arr.length / size); i++) {
+    subArr.push(arr.slice(size * i, size * i + size));
+  }
+  return subArr.map(arr=>arr.reduce((acc,cur)=>acc+cur,0))
+};
+console.log(threeInOne([1, 2, 3, 4, 5, 6, 7, 8, 9]));
+console.log([2,3,4,5,6,7].split(/{2}/g));
