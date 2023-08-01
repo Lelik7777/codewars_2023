@@ -174,7 +174,97 @@ const threeInOne = (arr) => {
   for (let i = 0; i < Math.ceil(arr.length / size); i++) {
     subArr.push(arr.slice(size * i, size * i + size));
   }
-  return subArr.map(arr=>arr.reduce((acc,cur)=>acc+cur,0))
+  return subArr.map((arr) => arr.reduce((acc, cur) => acc + cur, 0));
 };
 console.log(threeInOne([1, 2, 3, 4, 5, 6, 7, 8, 9]));
-console.log([2,3,4,5,6,7].split(/{2}/g));
+
+var arr = [1, 2, 3, 4, 5, 6, 100, 999];
+arr.sort((a, b) => {
+  //if (a%2==b%2) return a-b;
+  if (a % 2 > b % 2) return -1;
+  return 1;
+});
+console.log(arr);
+
+//? //////////////////////////////////////////////////////////////////////////
+
+//? 8. Training  #25: methods of arrayObject---reverse() and sort()
+
+//Coding in function sortIt. function accept 1 parameters arr, it's a number array. Your task is to sort the array according to the specified conditions, and returns a new array(should not modify the original array).
+
+// conditions1: according to the number of elements(in ascending order) for example:
+
+// sortIt([1,1,1,2,2,3]) should return [3,2,2,1,1,1]
+// because [1,1,1,2,2,3] has one 3, two 2 and three 1
+// conditions2: If the same number of elements, according to the number values(in descending order) for example:
+
+// sortIt([1,1,1,2,2,2,3,3,3]) should return [3,3,3,2,2,2,1,1,1]
+// because number of 3,2 and 1 both are three, then according to 3>2>1
+// Comprehensive two conditions should be like this:
+
+// sortIt([1,2,3,4,4,5,5,6,6]) should return [3,2,1,6,6,5,5,4,4]
+
+// 1.разделить массив на подмассив из одинаковых элементов
+
+const sortIt = (arr) => {
+  const sortArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i] === arr[j]) {
+        sortArr.push(arr[j]);
+      }
+    }
+  }
+  console.log(sortArr);
+};
+sortIt([1, 2, 3, 4, 4, 5, 5, 6, 6]);
+
+var a = [...Array(4)];
+console.log(a);
+var b = a.map((_, i) => i);
+console.log(b);
+var c = [...Array(4)].map((_, i) => i);
+console.log(c);
+
+//? //////////////////////////////////////////////////////////////////////////
+
+//? 9. Training JS #26:  methods of arrayObject---map()
+//Coding in function isolateIt. function accept 1 parameters arr, it's a string array. Your task is to put a character "|" into the middle of each element.
+
+// If the string length is an even number, use the insert method. for example: "abcd" should became "ab|cd". "|" should be inserted between ab and cd.
+
+// If the string length is an odd number, use the replacement method. for example: "abcde" should became "ab|de". Character c will be replaced by |.
+
+// The original array should not be changed, you need to return a new array(if you use the map method, you do not need to worry about this).
+
+// Example
+// isolateIt(["abcd","efgh"]) should return ["ab|cd","ef|gh"]
+// isolateIt(["abcde","fghij"]) should return ["ab|de","fg|ij"]
+// isolateIt(["1234","56789"]) should return ["12|34","56|89"]
+// a little hint: Flexible use of slice() Will make the work more simple.
+
+//1.определить длину каждой строки 2. определить четные и нечетные строки 3. в четных по середине поставить | ,а в нечетных срединный элемент заменить на |
+
+const isolateIt = (arr) =>
+  arr.map((str) => {
+    if (str.length % 2) {
+      str = str.split("");
+      str.splice(Math.floor(str.length / 2), 1, "|");
+      return str.join("");
+    } else {
+      str = str.split("");
+      str.splice(Math.floor(str.length / 2), 0, "|");
+      return str.join("");
+    }
+  });
+
+console.log(isolateIt(["abcd", "efgh", "adscd"]));
+
+// логика в том,что каждую строку(элемент массива) я при помощи метода slice() меняю: вначале я беру первую половину строки,далее прибавляю символ  | и далее беру вторую часть строки с конца
+const isolateIt1 = (arr) =>
+  arr.map(
+    (str) => str.slice(0, str.length / 2) + "|" + str.slice(-str.length / 2)
+  );
+
+console.log(isolateIt1(["abcd", "efgh", "adscd"]));
+
