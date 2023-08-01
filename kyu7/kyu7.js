@@ -313,4 +313,5 @@ const countGrade1 = (arr) => {
     X: count((x) => x === -1),
   };
 };
+
 console.log(countGrade1([50, 60, 70, 80, 90, 100]));
