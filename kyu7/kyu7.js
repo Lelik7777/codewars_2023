@@ -315,3 +315,61 @@ const countGrade1 = (arr) => {
 };
 
 console.log(countGrade1([50, 60, 70, 80, 90, 100]));
+
+//? //////////////////////////////////////////////////////////////////////////
+
+//?The following example will look for a pair of adjacent numbers in the array, and their sum is equal to 15:
+// в результате мы найдем первую соседнюю пару,сумма которой равна 15, а дальше проверка не пойдет
+let aa = 0,
+  bb = 0,
+  arr12 = [3, 6, 9, 6, 9, 3];
+
+console.log(
+  arr12.some((_, i) => {
+    aa = arr12[i];
+    bb = arr12[i + 1];
+    console.log(aa, bb);
+    return aa + bb === 15;
+  })
+);
+console.log(aa, bb);
+//? //////////////////////////////////////////////////////////////////////////
+
+//? 11. Training JS #28: methods of arrayObject---every() and some()
+
+// Coding in function mirrorImage. function accept 1 parameter arr, it's a number array. Your task is find the first pair of mirror-image number and return as an array. The two number must be adjacent, and the returned array is in accordance with the order from left to right.
+
+// What's the mirror-image number? for example:123 and 321 is a pair of mirror-image number. Two the same number of palindromes can also be seen as a pair of mirror-image number, such as 121 and 121.
+
+// If no such number is found, return[-1,-1]
+
+// Example
+// mirrorImage([11,22,33,33,22,11]) should return [33,33]
+// mirrorImage([454,86,57,75,16,88]) should return [57,75]
+// mirrorImage([454,0,57,0,16,88]) should return [-1,-1]
+
+// 1. брать первое соседнее число,потом брать второе соседнее число и превращать его в массив, далее делать его реверс .reverse(),снова превращать в число и сравнивать с первым числом. Используем метод some()
+const mirrorImage = (arr) => {
+  let firstNum, secondNum, polidromSecondNum;
+
+  const result = arr.some((_, i) => {
+    firstNum = arr[i];
+    secondNum = arr[i + 1];
+    polidromSecondNum = +String(secondNum).split("").reverse().join("");
+    return firstNum === polidromSecondNum;
+  });
+  if (!result) return [-1, -1];
+  return new Array(firstNum, secondNum);
+};
+console.log(mirrorImage([454, 86, 57, 75, 16, 88]));
+
+const mirrorImage2 = (arr) => {
+  let a=0, b=0;
+  const res = arr.some((x, i) => {
+    [a, b] = [x, arr[i+1]];
+    return +[...String(b)].reverse().join("") === a;
+  });
+  return res ? [a, b] : [-1, -1];
+};
+
+console.log(mirrorImage2([454, 86, 57, 75, 16, 88]));
