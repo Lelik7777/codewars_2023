@@ -364,12 +364,58 @@ const mirrorImage = (arr) => {
 console.log(mirrorImage([454, 86, 57, 75, 16, 88]));
 
 const mirrorImage2 = (arr) => {
-  let a=0, b=0;
+  let a = 0,
+    b = 0;
   const res = arr.some((x, i) => {
-    [a, b] = [x, arr[i+1]];
+    [a, b] = [x, arr[i + 1]];
     return +[...String(b)].reverse().join("") === a;
   });
   return res ? [a, b] : [-1, -1];
 };
 
 console.log(mirrorImage2([454, 86, 57, 75, 16, 88]));
+
+console.log(Array(4).join("a"));
+console.log([...Array(4)].join("a"));
+console.log(new Array(4 + 1).join("a"));
+
+var cache = [];
+for (var i = 0; i < 26; i++) cache[i] = String.fromCharCode(97 + i);
+console.log(cache);
+var result = cache.join("");
+console.log(result);
+
+//? //////////////////////////////////////////////////////////////////////////
+
+//? 12. Training JS #29: methods of arrayObject---concat() and join()
+
+// Coding in function bigToSmall. function accept 1 parameter arr(2D number array).
+
+// Your task is: First to all, refer to the example above, flat output arr to a one-dimensional array.
+
+// And then sort array in descending order.
+
+// Finally, use the separator ">" to connect the elements into a string.
+
+// Don't complain about the situation like 1>1 is not reasonable, it is just a separator.
+
+// Some example:
+
+// bigToSmall([[1,2],[3,4],[5,6]]) should return "6>5>4>3>2>1"
+// bigToSmall([[1,3,5],[2,4,6]]) should return "6>5>4>3>2>1"
+// bigToSmall([[1,1],[1],[1,1]]) should return "1>1>1>1>1"
+
+const bigToSmall = (arr) =>
+  []
+    .concat(...arr)
+    .sort((a, b) => b - a)
+    .join(">");
+bigToSmall([
+  [1, 2],
+  [3, 4],
+  [5, 6],
+]);
+
+
+
+//? //////////////////////////////////////////////////////////////////////////
