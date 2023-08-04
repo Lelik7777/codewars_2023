@@ -473,3 +473,48 @@ const tailAndHead = (arr) =>
     .reduce((acc, cur) => acc * cur);
 
 console.log(tailAndHead([123, 456, 789, 12, 34, 56, 78]));
+
+//? //////////////////////////////////////////////////////////////////////////
+
+console.log(
+  typeof JSON.stringify([
+    [1, 2],
+    [3, 4],
+  ])
+);
+
+//? 14. Training JS #31: methods of arrayObject---isArray() indexOf() and toString()
+
+// Coding in function blackAndWhite. function accept 1 parameter arr(a number array).
+
+// If arr is not an array, function should return:
+
+// "It's a fake array"
+// If arr contains elements 5 and 13, function should return:
+
+// "It's a black array"
+// If arr contains neither 5 nor 13, function should return:
+
+// "It's a white array"
+// Examples
+// blackAndWhite(5,13) should return "It's a fake array"
+// blackAndWhite([5,13]) should return "It's a black array"
+// blackAndWhite([5,12]) should return "It's a white array"
+// Using string template and ternary operator can make your work easier.
+
+const blackAndWhite = (arr) => {
+  const answers = [
+    "It's a fake array",
+    "It's a black array",
+    "It's a white array",
+  ];
+  return !Array.isArray(arr)
+    ? answers[0]
+    : arr.indexOf(5) !== -1 && arr.indexOf(13) !== -1
+    ? answers[1]
+    : answers[2];
+};
+
+console.log(blackAndWhite(5, 13)); // should return "It's a fake array"
+console.log(blackAndWhite([5, 13])); // should return "It's a black array"
+console.log(blackAndWhite([5, 12])); // should return "It's a white array"
