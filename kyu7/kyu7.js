@@ -551,3 +551,45 @@ const roundIt1 = (n) => {
     ? Math.ceil(n)
     : Math.round(n);
 };
+
+//? //////////////////////////////////////////////////////////////////////////
+
+//? 16. Training JS #33: methods of Math---max() min() and abs()
+
+// Coding in function maxMin. function accept 2 parameter arr1 and arr2. They are two number array and have the same number of elements.
+
+// First, calculate the difference of the same index of the arr1 and arr2. Like this:
+
+// [1,3,5]
+//  | | |   --->  8, 5, 2
+// [9,8,7]
+// Please note that the difference is positive. Such as the above 1 and 9, the difference should be 8, not -8. I think abs() can help you get the correct result ;-)
+
+// Then find the maximum and minimum values of them, and return the results in the form of an array. Like this:
+
+//   maxvalue , minvalue
+// [    8     ,    2     ]
+// Examples
+// maxMin([1,3,5],[9,8,7])               should return [8,2]
+// maxMin([1,10,100,1000],[0,0,0,0])     should return [1000,1]
+// maxMin([10,20,30,40],[111,11,1,-111]) should return [151,9]
+
+//1. в цикле вычитаю элементы двух массивов с одинаковыми индексами и пушу разницу в новый массив.2. нахожу максимальное значение и пушу в новый массив,далее нахожу минимальное и также пушу
+
+const maxMin = (arr1, arr2) => {
+  const arr = [];
+  const res = [];
+  for (let i = 0; i < arr1.length; i++) {
+    arr.push(Math.abs(arr1[i] - arr2[i]));
+  }
+  res.push(Math.max(...arr), Math.min(...arr));
+  return res;
+};
+console.log(maxMin([10, 20, 30, 40], [111, 11, 1, -111]));
+
+const maxMin1 = (arr1, arr2) => {
+  const res = arr1.map((x, i) => Math.abs(x - arr2[i]));
+  return [Math.max(...res), Math.min(...res)];
+};
+
+console.log(maxMin1([10, 20, 30, 40], [111, 11, 1, -111]));
