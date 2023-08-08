@@ -631,3 +631,67 @@ const cutCube = (volume, n) =>
 console.log(cutCube(27, 27));
 console.log(cutCube(512, 64));
 console.log(cutCube(27, 3));
+
+console.log(~~34.8);
+
+const getRandomNum = (from, to) => ~~((to - from) * Math.random() + from);
+console.log(getRandomNum(2, 4));
+
+//? //////////////////////////////////////////////////////////////////////////
+
+//? 18.Training JS #36: methods of Math---kata author's lover:random()
+
+// Coding in function rndCode. Your task is to generate a random verification code. In accordance with the following rules:
+
+// the code length should be 8;
+
+// The 1st and 2nd characters should be two uppercase letters. The range is "ABCDEFGHIJKLM".
+
+// The 3rd-6th characters should be four numbers.
+
+// the 7th and 8th characters should be two symbols. The range is "~!@#$%^&*".
+
+// If Your code runs 100 times, It should generate 100 non duplicate verification codes.
+
+// Some valid verification code examples:
+
+// AB1234#$ MG6145$@ KJ2249@&
+// CD5678%^ IG7593~% FH8638@&
+// EF9012!@ GB7047%$ KD7604^%
+
+// 1.создать массив на 8 ячеек 2.пробегаемся циклом по этому массиву 3. первые две ячейки забиваем заглавынми буквами 4. следующие 4 ячейки забиваем цифрами 5.в оставшиеся забиваем два символа
+
+const rndCode = () => {
+  const string = "ABCDEFGHIJKLM";
+  const symbols = "~!@#$%^&*";
+  const code = [];
+
+  const length = 8;
+  for (let i = 0; i < length; i++) {
+    if (i < 2) {
+      while (code.length < 2) {
+        let randomLetter = string[~~(Math.random() * string.length)];
+        if (!code.includes(randomLetter)) {
+          code.push(randomLetter);
+        }
+      }
+    }
+    if (i > 1 && i < 6) {
+      while (code.length < 6) {
+        let randomNum = ~~(Math.random() * 10);
+        if (!code.includes(randomNum)) code.push(randomNum);
+      }
+      console.log(code);
+    }
+    if (i >= 6) {
+      while (code.length < 8) {
+        let randomSymbol = symbols[~~(Math.random() * symbols.length)];
+        if (!code.includes(randomSymbol)) {
+          code.push(randomSymbol);
+        }
+      }
+    }
+  }
+  return code.join('');
+};
+console.log(rndCode());
