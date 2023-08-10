@@ -692,6 +692,35 @@ const rndCode = () => {
       }
     }
   }
-  return code.join('');
+  return code.join("");
 };
 console.log(rndCode());
+//? //////////////////////////////////////////////////////////////////////////
+
+//? 19.Training JS #37: Unlock new weapon---RegExp Object
+
+const rex = /abc/;
+const rex2 = new RegExp("abc");
+console.log(rex);
+console.log(rex2);
+
+const words = ["abc", "123", "&##"];
+for (const iterator of words) {
+  console.log(new RegExp(iterator));
+}
+var str = "ABABCDEababcde";
+console.log(str.match(/a/)[0]);
+
+console.log(str.match(/a/gi).length);
+
+//Coding in function countAnimals. function accept two parameters: animals, a string contains some animals; count, an array list of which animals we should count. The result should be a number array.
+
+// Examples
+// countAnimals("dog,cat",["dog","cat"]); //=> [1,1]
+// countAnimals("dog,cat",["dog","cat","pig"]); //=> [1,1,0]
+// countAnimals("dog,dog,cat",["dog","cat"]); //=> [2,1]
+// countAnimals("dog,dog,cat",["pig","cow"]); //=> [0,0]
+//  возвращает числовой массив, каждый элемент которого это число совпадений из строки. 1. пробежаться по массиву и найти количество совпадений элемента массива и его копии в строке(это через длину массива совпадений)
+
+const countAnimals = (str, arr) => arr.map(animal=>(str.match(new RegExp(animal,'g'))??[]).length);
+console.log('726',countAnimals("pig",["dog","cat"]));
