@@ -722,5 +722,63 @@ console.log(str.match(/a/gi).length);
 // countAnimals("dog,dog,cat",["pig","cow"]); //=> [0,0]
 //  возвращает числовой массив, каждый элемент которого это число совпадений из строки. 1. пробежаться по массиву и найти количество совпадений элемента массива и его копии в строке(это через длину массива совпадений)
 
-const countAnimals = (str, arr) => arr.map(animal=>(str.match(new RegExp(animal,'g'))??[]).length);
-console.log('726',countAnimals("pig",["dog","cat"]));
+const countAnimals = (str, arr) =>
+  arr.map((animal) => (str.match(new RegExp(animal, "g")) ?? []).length);
+console.log("726", countAnimals("pig", ["dog", "cat"]));
+
+//? //////////////////////////////////////////////////////////////////////////
+
+//? 20.Training JS #38: Regular Expression--"^","$", "." and test()
+
+console.log("sfasfsdfsadfsadfsad".match(/.{1,3}/g));
+var str = "abcabc";
+console.log(str.replace(/^./, str[0].toUpperCase()));
+console.log("hello world".split(/ /));
+"hello world".replace(/^./, (x) => console.log(x));
+"hello world".replace(/.\b/g, (x) => console.log(x));
+"whole words only".replace(/\bwords\b/g, (x) => console.log(x));
+
+var word = "abcd";
+//method 1:
+//
+var regstr =
+  word[0] + //first letter
+  word.slice(1, -1).replace(/./g, ".") + //middle letters
+  word.slice(-1);
+var reg1 = new RegExp("^" + regstr + "$");
+console.log(reg1);
+
+//Coding in function findSimilarity. function accept two parameters: str, a sentence contains some words, separated by spaces; word, a sample word.
+
+// Your task is to keep the words that are similar to the sample word, and to remove the other words.
+
+// The similarity is defined as: the same length as the sample; the letter at the beginning and the end of word are same as the sample too.
+
+// If there are no similar words in the sentence, should return an empty string.
+
+// Examples
+// findSimilarity("bag dog dig dot doog dogs","dog") should return "dog dig"
+// findSimilarity("bag dog dig dot doog dogs","dig") should return "dog dig"
+// findSimilarity("bag dog dig dot doog dogs","dot") should return "dot"
+// findSimilarity("bag dog dig dot doog dogs","god") should return ""
+// Hint: Use filter() will make your work easier; If you don't know how to solve the kata, please refer to the examples of lesson.
+
+//1 с помощью filter() находим все слова,длина которых совпадает с длиной образца 2. прогоняем через map() и каждое слово сравниваем с образцом по первой и последней букве
+
+const findSimilarity = (str, word) =>
+  str
+    .split(/ /)
+    .filter(
+      (w) =>
+        w[0] === word[0] &&
+        w.slice(-1) === word.slice(-1) &&
+        w.length === word.length
+    )
+    .join(" ");
+console.log(findSimilarity("bag dog dig dot doog dogs", "dog"));
+let word11 = "dog";
+var reg = new RegExp("^" + word11.replace(/\B.\B/g, ".") + "$");
+console.log(reg);
+
+console.log('dogs'.replace(/\B..\B/,'.'));
+console.log('dogs cats'.replace(/\b./g,'.'));
