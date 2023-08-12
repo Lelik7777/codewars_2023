@@ -780,5 +780,25 @@ let word11 = "dog";
 var reg = new RegExp("^" + word11.replace(/\B.\B/g, ".") + "$");
 console.log(reg);
 
-console.log('dogs'.replace(/\B..\B/,'.'));
-console.log('dogs cats'.replace(/\b./g,'.'));
+console.log("dogs".replace(/\B..\B/, "."));
+console.log("dogs cats".replace(/\b./g, "."));
+
+let stringMy =
+  "ПРОХОЖДЕНИЕ СОБЕСОВ И ПОЛУЧЕНИЕ РАБОТЫ РАЗРАБОМ - ЭТО РАЗРЕШЕНИЕ ОТЛОЖЕННОЙ МНОЙ ЕЩЕ В МОЛОДОСТИ ЗАДАЧИ, КОГДА Я КАТЕГОРИЧЕСКИ ОТКАЗАЛСЯ ИДТИ В ИНТЕРНАТУРУ";
+console.log(stringMy.toLowerCase());
+
+//
+let str00 = "xx xax xaax xaaax";
+console.log(str00.replace(/xa{1,2}/g, "!"));
+function fakeBin(x) {
+  return x.replace(/./g, (d) => +(d >= 5));
+}
+console.log(fakeBin("23489"));
+console.log(+true);
+console.log(+false);
+console.log("hello".replace(/.\b/g, "*")); // заменить все буквы кроме последней
+str.replace(
+  /\w+/g,
+  (x) => x.slice(0, -1).toUpperCase() + x.slice(-1).toLowerCase()
+);
+console.log('hello'.slice(0,-1));
