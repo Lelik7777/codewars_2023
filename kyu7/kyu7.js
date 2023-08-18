@@ -810,9 +810,9 @@ console.log("hello".slice(0, -1));
 var str01 = "aaaabbbb";
 console.log(str01.match(/сb/) + "");
 console.log([3, 4, 5] + "");
-console.log(['hello','world']+'');
+console.log(["hello", "world"] + "");
 
-var s="100001,111,12222221,222,3333,12321,14441";
+var s = "100001,111,12222221,222,3333,12321,14441";
 console.log(s.match(/1.*?1/g));
 
 //This time you do not need coding in function. You just need to write a regular expression that matches the specified numeric string. I've given the regular expression name: "regex", please don't modify the name.
@@ -835,10 +835,8 @@ console.log(s.match(/1.*?1/g));
 // regex.test("1-90000") should return false
 // regex.test("-90000123") should return false
 
-const regex=/9.*0{4}/;
-console.log((/-?9\d*0{4}$/).test('-90000123'));
-
-
+const regex = /9.*0{4}/;
+console.log(/-?9\d*0{4}$/.test("-90000123"));
 
 //? //////////////////////////////////////////////////////////////////////////
 
@@ -847,7 +845,6 @@ console.log((/-?9\d*0{4}$/).test('-90000123'));
 //This time you need to write a regular expression that matches all URL contained in the string.
 
 // The rules:
-
 
 // Examples
 // "http://codewars.com".match(regex)
@@ -884,26 +881,28 @@ console.log((/-?9\d*0{4}$/).test('-90000123'));
 // Need to ignore case, and a string may contain multiple URLs
 // Your regular expression name should be regex and your result should be a string array.
 
-const regex1=/(http|https):\/\/[a-z0-9\.]+(\.net|\.com)/gi;
-const regex2=/https?:\/\/[a-z0-9\.]+\.(net|com)/gi;
-console.log('http://hEllo233.44.com'.match(regex1));
-console.log("http://www.codewars1.com!@#$%http://www.codewars2.net".match(regex2));
+const regex1 = /(http|https):\/\/[a-z0-9\.]+(\.net|\.com)/gi;
+const regex2 = /https?:\/\/[a-z0-9\.]+\.(net|com)/gi;
+console.log("http://hEllo233.44.com".match(regex1));
+console.log(
+  "http://www.codewars1.com!@#$%http://www.codewars2.net".match(regex2)
+);
 
 //? //////////////////////////////////////////////////////////////////////////
 
 //? 23.Training JS #41: Regular Expression--"\"
 
-function isPair(s){
-  var r=/\(\)|\[\]|\{\}/g;
-  while (r.test(s)) s=s.replace(r,"");
-  return s=="";
+function isPair(s) {
+  var r = /\(\)|\[\]|\{\}/g;
+  while (r.test(s)) s = s.replace(r, "");
+  return s == "";
 }
 
-console.log( isPair("()") )     //output: true
-console.log( isPair("((()))") ) //output: true
+console.log(isPair("()")); //output: true
+console.log(isPair("((()))")); //output: true
 
-console.log( isPair(")(") )     //output: false
-console.log( isPair("({[})") )  //output: false
+console.log(isPair(")(")); //output: false
+console.log(isPair("({[})")); //output: false
 
 //You might have guessed the task. Yes, This time your task is to write a regular expressions matching all palindrome substring of a string.
 
@@ -927,7 +926,7 @@ console.log( isPair("({[})") )  //output: false
 // "abbA CdDc".match(regex)               should return null
 
 //скопировал, так и не смог разобраться
-var regex02=/\b(\w)(\w)?(\w)?\w?\3\2\1\b/g
+var regex02 = /\b(\w)(\w)?(\w)?\w?\3\2\1\b/g;
 console.log("qbcddcbq".match(regex02));
 
 //    \b - spaces around the words / numbers
@@ -944,3 +943,33 @@ console.log("qbcddcbq".match(regex02));
 //    sub expression №      1   2   3   4
 
 //    Did I understand this solution correctly?
+
+//? //////////////////////////////////////////////////////////////////////////
+
+//? 24.Count all the sheep on farm in the heights of New Zealand
+
+// Every Friday and Saturday night, farmer counts amount of sheep returned back to his farm (sheep returned on Friday stay and don't leave for a weekend).
+
+// Sheep return in groups each of the days -> you will be given two arrays with these numbers (one for Friday and one for Saturday night). Entries are always positive ints, higher than zero.
+
+// Farmer knows the total amount of sheep, this is a third parameter. You need to return the amount of sheep lost (not returned to the farm) after final sheep counting on Saturday.
+
+// Example 1: Input: {1, 2}, {3, 4}, 15 --> Output: 5
+
+// Example 2: Input: {3, 1, 2}, {4, 5}, 21 --> Output: 6
+
+const lostSheep = (friday, saturday, total) => {
+  if (friday.length > 0) {
+    total -= friday.reduce((acc, cur) => acc + cur);
+  }
+  if (saturday.length > 0) {
+    total -= saturday.reduce((acc, cur) => acc + cur);
+  }
+  return total;
+};
+
+console.log(lostSheep([], [4, 5], 21));
+
+const lostSheep1 = (f, s, t) =>
+  t - [...f, ...s].reduce((acc, cur) => acc + cur,0);
+console.log(lostSheep1([], [], 21));
