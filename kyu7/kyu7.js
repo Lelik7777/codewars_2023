@@ -973,3 +973,29 @@ console.log(lostSheep([], [4, 5], 21));
 const lostSheep1 = (f, s, t) =>
   t - [...f, ...s].reduce((acc, cur) => acc + cur,0);
 console.log(lostSheep1([], [], 21));
+
+//? //////////////////////////////////////////////////////////////////////////
+
+//? 25.Count all the sheep on farm in the heights of New Zealand
+
+// Implement a function, multiples(m, n), which returns an array of the first m multiples of the real number n. Assume that m is a positive integer.
+
+// Ex.
+
+// multiples(3, 5.0)
+// should return
+
+// [5.0, 10.0, 15.0]
+
+const multiples=(m,n)=>{
+const arr=[];
+let sum=0;
+for(let i=0;i<m;i++){
+  arr.push(sum+=n);
+}
+return arr;
+}
+const multiples1=(m,n)=>Array.from(Array(m),(_,i)=>n*(i+1));
+console.log(multiples(3,4.0));
+console.log(multiples1(3,4.0));
+console.log(Array(2));
