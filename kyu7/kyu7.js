@@ -971,12 +971,12 @@ const lostSheep = (friday, saturday, total) => {
 console.log(lostSheep([], [4, 5], 21));
 
 const lostSheep1 = (f, s, t) =>
-  t - [...f, ...s].reduce((acc, cur) => acc + cur,0);
+  t - [...f, ...s].reduce((acc, cur) => acc + cur, 0);
 console.log(lostSheep1([], [], 21));
 
 //? //////////////////////////////////////////////////////////////////////////
 
-//? 25.Count all the sheep on farm in the heights of New Zealand
+//? 25.Return the first M multiples of N
 
 // Implement a function, multiples(m, n), which returns an array of the first m multiples of the real number n. Assume that m is a positive integer.
 
@@ -987,15 +987,61 @@ console.log(lostSheep1([], [], 21));
 
 // [5.0, 10.0, 15.0]
 
-const multiples=(m,n)=>{
-const arr=[];
-let sum=0;
-for(let i=0;i<m;i++){
-  arr.push(sum+=n);
-}
-return arr;
-}
-const multiples1=(m,n)=>Array.from(Array(m),(_,i)=>n*(i+1));
-console.log(multiples(3,4.0));
-console.log(multiples1(3,4.0));
+const multiples = (m, n) => {
+  const arr = [];
+  let sum = 0;
+  for (let i = 0; i < m; i++) {
+    arr.push((sum += n));
+  }
+  return arr;
+};
+const multiples1 = (m, n) => Array.from(Array(m), (_, i) => n * (i + 1));
+console.log(multiples(3, 4.0));
+console.log(multiples1(3, 4.0));
 console.log(Array(2));
+
+//? //////////////////////////////////////////////////////////////////////////
+
+//? 26.80's Kids #2: Help ALF Find His Spaceship
+
+// Late last night in the Tanner household, ALF was repairing his spaceship so he might get back to Melmac. Unfortunately for him, he forgot to put on the parking brake, and the spaceship took off during repair. Now it's hovering in space.
+
+// ALF has the technology to bring the spaceship home if he can lock on to its location.
+
+// Given a map:
+
+// ..........
+// ..........
+// ..........
+// .......X..
+// ..........
+// ..........
+// The map will be given in the form of a string with \n separating new lines. The bottom left of the map is [0, 0]. X is ALF's spaceship.
+
+// In this example:
+
+// findSpaceship(map) => [7, 2]
+// If you cannot find the spaceship, the result should be
+
+// "Spaceship lost forever."
+//здесь важно понять,что принимает ф-ция. Она принимает строку,состоящую из точек  и буквы Х. Поэтому сначала мне нужно превратить ее в массив подстрок,где переход на новыю строку яляется разделителем. Далее нужно поменять последовательность этих подстрок, поскольку по условию начало находится в конце. Далее пробежаться двумя циклами и перебрать элементы. Как только встречаем букву Х, то возвращаем массив с координатами. Если же буквы нет, то возвращаем кодовую фразу
+
+const findSpaceship = (map = "") => {
+  map = map.split("\n").reverse();
+  for (let i = 0; i < map.length; i++) {
+    for (let j = 0; j < map[i].length; j++) {
+      if (map[i][j] === "X") {
+        return [j, i];
+      }
+    }
+  }
+  return "Spaceship lost forever.";
+};
+console.log(
+  findSpaceship(`..........
+..........
+....X.....
+..........
+..........
+..........`)
+);
