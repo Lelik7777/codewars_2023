@@ -1124,7 +1124,7 @@ console.log(getSocks("Henry", ["", "hot", "set", "blue"]));
 // I have created other katas. Have a look if you like coding and challenges.
 
 //1. цикл на длину базового массива 2. для первого элемента массива добавить нули( их количество равно сдвиг * (на длину массива-1)  ) в конец push() через Array.from({length:},x=>x=0).3 для последнего элемента также забиваем нулями, но вначале unshift() 4. основная проблема возникает с элементами,которые находятся посередине,поскольку нули нужно добавлять,как в начало массива(количество нулей равно сдвиг * на индекс), так и в конец(количество нулей равно (длина массива -1) * сдвиг - сдиг * на индекс)). 5. по итогу получаем массив array ,который содержит массивы в качестве элементов, в которых есть также массивы,поэтому array.map()  каждый элемента через flat() преобоазуем в одномерный массив. 6. складываем каждый элемент массивов по индексно и возращаем итоговый массив сумм
- const addingShifted = (arr, shift) => {
+const addingShifted = (arr, shift) => {
   let array = arr;
   for (let i = 0; i < arr.length; i++) {
     if (i === 0) {
@@ -1180,4 +1180,18 @@ console.log(
 );
 console.log(Array.from({ length: 3 }, (x) => (x = 0)));
 
+//? //////////////////////////////////////////////////////////////////////////
 
+//? 29.Is every value in the array an array?
+// Is every value in the array an array?
+
+// This should only test the second array dimension of the array. The values of the nested arrays don't have to be arrays.
+
+// Examples:
+
+// [[1],[2]] => true
+// ['1','2'] => false
+// [{1:1},{2:2}] => false
+
+const arrCheck = (value) => value.every((el) => Array.isArray(el));
+const arrCheck1 = (value) => value.every(Array.isArray);
