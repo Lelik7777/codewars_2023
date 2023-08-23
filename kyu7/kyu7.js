@@ -1077,3 +1077,107 @@ const getSocks = (name, arr) => {
 };
 
 console.log(getSocks("Henry", ["", "hot", "set", "blue"]));
+
+//? //////////////////////////////////////////////////////////////////////////
+
+//? 28.Adding values of arrays in a shifted way
+
+// #Adding values of arrays in a shifted way
+
+// You have to write a method, that gets two parameter:
+
+// 1. An array of arrays with int-numbers
+// 2. The shifting value
+// #The method should add the values of the arrays to one new array.
+
+// The arrays in the array will all have the same size and this size will always be greater than 0.
+// The shifting value is always a value from 0 up to the size of the arrays.
+// There are always arrays in the array, so you do not need to check for null or empty.
+
+// #1. Example:
+
+// [[1,2,3,4,5,6], [7,7,7,7,7,-7]], 0
+
+// 1,2,3,4,5,6
+// 7,7,7,7,7,-7
+
+// --> [8,9,10,11,12,-1]
+// #2. Example
+
+// [[1,2,3,4,5,6], [7,7,7,7,7,7]], 3
+
+// 1,2,3,4,5,6
+//       7,7,7,7,7,7
+
+// --> [1,2,3,11,12,13,7,7,7]
+// #3. Example
+
+// [[1,2,3,4,5,6], [7,7,7,-7,7,7], [1,1,1,1,1,1]], 3
+
+// 1,2,3,4,5,6
+//       7,7,7,-7,7,7
+//             1,1,1,1,1,1
+
+// --> [1,2,3,11,12,13,-6,8,8,1,1,1]
+// Have fun coding it and please don't forget to vote and rank this kata! :-)
+
+// I have created other katas. Have a look if you like coding and challenges.
+
+//1. цикл на длину базового массива 2. для первого элемента массива добавить нули( их количество равно сдвиг * (на длину массива-1)  ) в конец push() через Array.from({length:},x=>x=0).3 для последнего элемента также забиваем нулями, но вначале unshift() 4. основная проблема возникает с элементами,которые находятся посередине,поскольку нули нужно добавлять,как в начало массива(количество нулей равно сдвиг * на индекс), так и в конец(количество нулей равно (длина массива -1) * сдвиг - сдиг * на индекс)). 5. по итогу получаем массив array ,который содержит массивы в качестве элементов, в которых есть также массивы,поэтому array.map()  каждый элемента через flat() преобоазуем в одномерный массив. 6. складываем каждый элемент массивов по индексно и возращаем итоговый массив сумм
+ const addingShifted = (arr, shift) => {
+  let array = arr;
+  for (let i = 0; i < arr.length; i++) {
+    if (i === 0) {
+      array[i].push(
+        Array.from({ length: shift * (arr.length - 1) }, (x) => (x = 0))
+      );
+    } else if (i === arr.length - 1) {
+      array[i].unshift(
+        Array.from({ length: shift * (arr.length - 1) }, (x) => (x = 0))
+      );
+    } else {
+      array[i].unshift(Array.from({ length: shift * i }, (x) => (x = 0)));
+
+      array[i].push(
+        Array.from(
+          { length: (array.length - 1) * shift - shift * i },
+          (x) => (x = 0)
+        )
+      );
+    }
+  }
+  array = array.map((x) => x.flat());
+  console.log(array);
+  const res = [];
+  let sum = 0;
+  for (let j = 0; j < array[0].length; j++) {
+    for (let i = 0; i < array.length; i++) {
+      sum += array[i][j];
+    }
+    res[j] = sum;
+    sum = 0;
+  }
+  return res;
+};
+console.log(
+  addingShifted(
+    [
+      [1, 2, 3, 4, 5, 6],
+      [7, 7, 7, -7, 7, 7],
+      [1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1],
+    ],
+    3
+  )
+);
+const str11 = "134";
+console.log(str11.padEnd(str11.length + 3, "0"));
+
+console.log(
+  ["abc", "cbd"].map((x) =>
+    x.replace(new RegExp(`^${x[0]}`), x[0].toLocaleUpperCase())
+  )
+);
+console.log(Array.from({ length: 3 }, (x) => (x = 0)));
+
+
