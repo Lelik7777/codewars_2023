@@ -28,13 +28,9 @@ const brightest = (colorsArr) => {
   };
   //этот массив чисел идентичен по количеству начальному массиву цветов,поэтому индекс максимального числа соответствует индексу самого яркого цвета
   const arrayNumbers = colorsArr.map((color) => getMaxColorValue(color));
-  return colorsArr.at(
-    arrayNumbers.findIndex((el) => el === Math.max(...arrayNumbers))
-  );
+  return colorsArr.at(arrayNumbers.findIndex((el) => el === Math.max(...arrayNumbers)));
 };
-console.log(
-  brightest(["#0D5D1B", "#3DCBE2", "#C0A8DD", "#BAE49F", "#A2D643", "#BBC5A3"])
-);
+console.log(brightest(["#0D5D1B", "#3DCBE2", "#C0A8DD", "#BAE49F", "#A2D643", "#BBC5A3"]));
 //? ///////////////////////////////////////////////////////////////////////////////////////
 
 //?2. Disemvowel Trolls
@@ -261,10 +257,7 @@ const isolateIt = (arr) =>
 console.log(isolateIt(["abcd", "efgh", "adscd"]));
 
 // логика в том,что каждую строку(элемент массива) я при помощи метода slice() меняю: вначале я беру первую половину строки,далее прибавляю символ  | и далее беру вторую часть строки с конца
-const isolateIt1 = (arr) =>
-  arr.map(
-    (str) => str.slice(0, str.length / 2) + "|" + str.slice(-str.length / 2)
-  );
+const isolateIt1 = (arr) => arr.map((str) => str.slice(0, str.length / 2) + "|" + str.slice(-str.length / 2));
 
 console.log(isolateIt1(["abcd", "efgh", "adscd"]));
 
@@ -427,9 +420,7 @@ var arr1 = [1, 2, 3, 4, 5];
 var arr2 = [6, 7, 8, 9, 10];
 //var result=arr1.map(x=>x*x).reduce((a,b,i,ar)=>a.concat(ar[i],arr2[i]),[])
 //ES6 syntax
-var result = arr1
-  .map((x) => x * x)
-  .reduce((a, b, i, ar) => [...a, ar[i], arr2[i]], []);
+var result = arr1.map((x) => x * x).reduce((a, b, i, ar) => [...a, ar[i], arr2[i]], []);
 
 console.log(result); //output: [ 1, 6, 4, 7, 9, 8, 16, 9, 25, 10 ]
 
@@ -465,9 +456,7 @@ console.log(result); //output: [ 1, 6, 4, 7, 9, 8, 16, 9, 25, 10 ]
 const tailAndHead = (arr) =>
   arr
     .map((num, i, ar) =>
-      i < arr.length - 1
-        ? Number(String(num).slice(-1)) + Number(String(ar[i + 1]).slice(0, 1))
-        : ""
+      i < arr.length - 1 ? Number(String(num).slice(-1)) + Number(String(ar[i + 1]).slice(0, 1)) : ""
     )
     .filter((x) => x !== "")
     .reduce((acc, cur) => acc * cur);
@@ -503,16 +492,8 @@ console.log(
 // Using string template and ternary operator can make your work easier.
 
 const blackAndWhite = (arr) => {
-  const answers = [
-    "It's a fake array",
-    "It's a black array",
-    "It's a white array",
-  ];
-  return !Array.isArray(arr)
-    ? answers[0]
-    : arr.indexOf(5) !== -1 && arr.indexOf(13) !== -1
-    ? answers[1]
-    : answers[2];
+  const answers = ["It's a fake array", "It's a black array", "It's a white array"];
+  return !Array.isArray(arr) ? answers[0] : arr.indexOf(5) !== -1 && arr.indexOf(13) !== -1 ? answers[1] : answers[2];
 };
 
 console.log(blackAndWhite(5, 13)); // should return "It's a fake array"
@@ -545,11 +526,7 @@ console.log(roundIt(98.54));
 
 const roundIt1 = (n) => {
   const [a, b] = String(n).split(".");
-  return a.length > b.length
-    ? Math.floor(n)
-    : a.length < b.length
-    ? Math.ceil(n)
-    : Math.round(n);
+  return a.length > b.length ? Math.floor(n) : a.length < b.length ? Math.ceil(n) : Math.round(n);
 };
 
 //? //////////////////////////////////////////////////////////////////////////
@@ -623,10 +600,7 @@ console.log(maxMin1([10, 20, 30, 40], [111, 11, 1, -111]));
 // cutCube(256,4) should return false
 // The two examples above seems to meet our requirements, but please note: a cube is unable to evenly divided into 50 pieces or 4 pieces. Only cubic numbers(such as 8,27,64,125,216...) can be used to divide the cube evenly.
 
-const cutCube = (volume, n) =>
-  Number.isInteger(Math.cbrt(n))
-    ? Number.isInteger(Math.cbrt(volume / n))
-    : false;
+const cutCube = (volume, n) => (Number.isInteger(Math.cbrt(n)) ? Number.isInteger(Math.cbrt(volume / n)) : false);
 
 console.log(cutCube(27, 27));
 console.log(cutCube(512, 64));
@@ -722,8 +696,7 @@ console.log(str.match(/a/gi).length);
 // countAnimals("dog,dog,cat",["pig","cow"]); //=> [0,0]
 //  возвращает числовой массив, каждый элемент которого это число совпадений из строки. 1. пробежаться по массиву и найти количество совпадений элемента массива и его копии в строке(это через длину массива совпадений)
 
-const countAnimals = (str, arr) =>
-  arr.map((animal) => (str.match(new RegExp(animal, "g")) ?? []).length);
+const countAnimals = (str, arr) => arr.map((animal) => (str.match(new RegExp(animal, "g")) ?? []).length);
 console.log("726", countAnimals("pig", ["dog", "cat"]));
 
 //? //////////////////////////////////////////////////////////////////////////
@@ -768,12 +741,7 @@ console.log(reg1);
 const findSimilarity = (str, word) =>
   str
     .split(/ /)
-    .filter(
-      (w) =>
-        w[0] === word[0] &&
-        w.slice(-1) === word.slice(-1) &&
-        w.length === word.length
-    )
+    .filter((w) => w[0] === word[0] && w.slice(-1) === word.slice(-1) && w.length === word.length)
     .join(" ");
 console.log(findSimilarity("bag dog dig dot doog dogs", "dog"));
 let word11 = "dog";
@@ -797,10 +765,7 @@ console.log(fakeBin("23489"));
 console.log(+true);
 console.log(+false);
 console.log("hello".replace(/.\b/g, "*")); // заменить все буквы кроме последней
-str.replace(
-  /\w+/g,
-  (x) => x.slice(0, -1).toUpperCase() + x.slice(-1).toLowerCase()
-);
+str.replace(/\w+/g, (x) => x.slice(0, -1).toUpperCase() + x.slice(-1).toLowerCase());
 console.log("hello".slice(0, -1));
 
 //? //////////////////////////////////////////////////////////////////////////
@@ -884,9 +849,7 @@ console.log(/-?9\d*0{4}$/.test("-90000123"));
 const regex1 = /(http|https):\/\/[a-z0-9\.]+(\.net|\.com)/gi;
 const regex2 = /https?:\/\/[a-z0-9\.]+\.(net|com)/gi;
 console.log("http://hEllo233.44.com".match(regex1));
-console.log(
-  "http://www.codewars1.com!@#$%http://www.codewars2.net".match(regex2)
-);
+console.log("http://www.codewars1.com!@#$%http://www.codewars2.net".match(regex2));
 
 //? //////////////////////////////////////////////////////////////////////////
 
@@ -970,8 +933,7 @@ const lostSheep = (friday, saturday, total) => {
 
 console.log(lostSheep([], [4, 5], 21));
 
-const lostSheep1 = (f, s, t) =>
-  t - [...f, ...s].reduce((acc, cur) => acc + cur, 0);
+const lostSheep1 = (f, s, t) => t - [...f, ...s].reduce((acc, cur) => acc + cur, 0);
 console.log(lostSheep1([], [], 21));
 
 //? //////////////////////////////////////////////////////////////////////////
@@ -1064,9 +1026,7 @@ console.log(
 const getSocks = (name, arr) => {
   if (name === "Henry") {
     const set = new Set(arr);
-    const res = arr
-      .map((el) => (set.has(el) ? set.delete(el) : el))
-      .filter((x) => x !== true);
+    const res = arr.map((el) => (set.has(el) ? set.delete(el) : el)).filter((x) => x !== true);
     return [...res, ...res];
   }
 
@@ -1128,22 +1088,13 @@ const addingShifted = (arr, shift) => {
   let array = arr;
   for (let i = 0; i < arr.length; i++) {
     if (i === 0) {
-      array[i].push(
-        Array.from({ length: shift * (arr.length - 1) }, (x) => (x = 0))
-      );
+      array[i].push(Array.from({ length: shift * (arr.length - 1) }, (x) => (x = 0)));
     } else if (i === arr.length - 1) {
-      array[i].unshift(
-        Array.from({ length: shift * (arr.length - 1) }, (x) => (x = 0))
-      );
+      array[i].unshift(Array.from({ length: shift * (arr.length - 1) }, (x) => (x = 0)));
     } else {
       array[i].unshift(Array.from({ length: shift * i }, (x) => (x = 0)));
 
-      array[i].push(
-        Array.from(
-          { length: (array.length - 1) * shift - shift * i },
-          (x) => (x = 0)
-        )
-      );
+      array[i].push(Array.from({ length: (array.length - 1) * shift - shift * i }, (x) => (x = 0)));
     }
   }
   array = array.map((x) => x.flat());
@@ -1173,11 +1124,7 @@ console.log(
 const str11 = "134";
 console.log(str11.padEnd(str11.length + 3, "0"));
 
-console.log(
-  ["abc", "cbd"].map((x) =>
-    x.replace(new RegExp(`^${x[0]}`), x[0].toLocaleUpperCase())
-  )
-);
+console.log(["abc", "cbd"].map((x) => x.replace(new RegExp(`^${x[0]}`), x[0].toLocaleUpperCase())));
 console.log(Array.from({ length: 3 }, (x) => (x = 0)));
 
 //? //////////////////////////////////////////////////////////////////////////
@@ -1212,3 +1159,28 @@ const min = (arr, string) => {
   if (string === "value") return Math.min(...arr);
   if (string === "index") return arr.indexOf(Math.min(...arr));
 };
+
+//? //////////////////////////////////////////////////////////////////////////
+
+//? 31.Array Array Array
+
+// You are given an initial 2-value array (x). You will use this to calculate a score.
+
+// If both values in (x) are numbers, the score is the sum of the two. If only one is a number, the score is that number. If neither is a number, return 'Void!'.
+
+// Once you have your score, you must return an array of arrays. Each sub array will be the same as (x) and the number of sub arrays should be equal to the score.
+
+// For example:
+
+// if (x) == ['a', 3] you should return [['a', 3], ['a', 3], ['a', 3]].
+
+const explode0 = (x) => {
+  if (x.every((num) => typeof num !== "number")) return "Void!";
+  let sum=0;
+  for(let i=0;i<x.length;i++){
+    if(typeof x[i] === 'number')
+    sum+=x[i];
+  }
+  return Array.from({length:sum},el=>x)
+};
+console.log(explode0([5, 1]));
