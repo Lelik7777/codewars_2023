@@ -1176,11 +1176,76 @@ const min = (arr, string) => {
 
 const explode0 = (x) => {
   if (x.every((num) => typeof num !== "number")) return "Void!";
-  let sum=0;
-  for(let i=0;i<x.length;i++){
-    if(typeof x[i] === 'number')
-    sum+=x[i];
+  let sum = 0;
+  for (let i = 0; i < x.length; i++) {
+    if (typeof x[i] === "number") sum += x[i];
   }
-  return Array.from({length:sum},el=>x)
+  return Array.from({ length: sum }, (el) => x);
 };
 console.log(explode0([5, 1]));
+
+//? //////////////////////////////////////////////////////////////////////////
+
+//? 32.The Office II - Boredom Score
+
+// Every now and then people in the office moves teams or departments. Depending what people are doing with their time they can become more or less boring. Time to assess the current team.
+
+// You will be provided with an object(staff) containing the staff names as keys, and the department they work in as values.
+
+// Each department has a different boredom assessment score, as follows:
+
+// accounts = 1
+// finance = 2
+// canteen = 10
+// regulation = 3
+// trading = 6
+// change = 6
+// IS = 8
+// retail = 5
+// cleaning = 4
+// pissing about = 25
+
+// Depending on the cumulative score of the team, return the appropriate sentiment:
+
+// <=80: 'kill me now'
+// < 100 & > 80: 'i can handle this'
+// 100 or over: 'party time!!'
+
+const boredom = (staff) => {
+  const obj = {
+    accounts: 1,
+    finance: 2,
+    canteen: 10,
+    regulation: 3,
+    trading: 6,
+    change: 6,
+    IS: 8,
+    retail: 5,
+    cleaning: 4,
+    "passing about": 25,
+  };
+  console.log(Object.values(staff).map((el) => obj[el]));
+  const res = Object.values(staff)
+    .map((el) => obj[el])
+    .reduce((a, c) => a + c, 0);
+  if (+res <= 80) return "kill me now";
+  if (+res < 100 && +res > 80) return "i can handle this";
+  if (+res > 100) return "party time!!";
+};
+boredom({
+  tim: "change",
+  jim: "accounts",
+  randy: "canteen",
+  sandy: "change",
+  andy: "change",
+  katie: "IS",
+  laura: "change",
+  saajid: "IS",
+  alex: "trading",
+  john: "accounts",
+  mr: "passing about",
+});
+boredom({ tim: 'IS', jim: 'finance',
+randy: 'pissing about', sandy: 'cleaning', andy: 'cleaning',
+katie: 'cleaning', laura: 'pissing about', saajid: 'regulation',
+alex: 'regulation', john: 'accounts', mr: 'canteen' });
