@@ -1301,7 +1301,6 @@ boredom({
 //1. уберем все возможные проблемы в строке str.replace(/\s/,'') 2. создать объект letters ,у которого ключи - это буквы, а значения - вес буквы
 
 const scrabbleScore = (str) => {
-
   const letters = {
     a: 1,
     e: 1,
@@ -1330,8 +1329,18 @@ const scrabbleScore = (str) => {
     q: 10,
     z: 10,
   };
-  if(str.length<1)return 0;
-  return [...str.replace(/\s/g, "")].map(x=>letters[x.toLowerCase()]).reduce((a,c)=>a+c,0);
+  if (str.length < 1) return 0;
+  return [...str.replace(/\s/g, "")].map((x) => letters[x.toLowerCase()]).reduce((a, c) => a + c, 0);
 };
 
 console.log(scrabbleScore("st re et"));
+
+//? //////////////////////////////////////////////////////////////////////////
+
+//? 35.Average Scores
+// Create a function that returns the average of an array of numbers ("scores"), rounded to the nearest whole number. You are not allowed to use any loops (including for, for/in, while, and do/while loops).
+
+// The array will never be empty.
+
+const average = (scores) => Math.round(scores.reduce((a,c)=>a+c,0)/scores.length);
+console.log(average([49,3,5,300,7]));
