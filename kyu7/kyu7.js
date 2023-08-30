@@ -1525,9 +1525,104 @@ console.log(
 // [12, 14, 55, 24]
 // The input will always be a valid list, a and b will always be different integers equal to or greater than zero, but they may be zero or be larger than the length of the list.
 
-const inverseSlice=(items,a,b)=>{
-  items.splice(a,b-a);
-  return items
-}
+const inverseSlice = (items, a, b) => {
+  items.splice(a, b - a);
+  return items;
+};
 
-console.log(inverseSlice( [12, 14, 63, 72, 55, 24], 0, 3));
+console.log(inverseSlice([12, 14, 63, 72, 55, 24], 0, 3));
+
+let matrix = [["hello"], ["world"]];
+matrix = matrix.map((x) => String(x).repeat(2));
+console.log(matrix);
+
+console.log(matrix.map((x) => [].fill("h", 4)));
+
+const matrix1 = [["hello"], ["world"]];
+const res = matrix1.map((a) => Array(4).fill(...a));
+console.log(res);
+//? //////////////////////////////////////////////////////////////////////////
+
+// //? 41.Thinkful - Object Drills: Vectors
+// Create a Vector class with x and a y attributes that represent component magnitudes in the x and y directions.
+
+// Your vectors should handle vector additon with an .add() method that takes a second vector as an argument and returns a new vector equal to the sum of the vector you call .add() on and the vector you pass in.
+
+// For example:
+
+// >>> a = Vector(3, 4)
+// >>> a.x
+// 3
+// >>> a.y
+// 4
+// >>> b = Vector(1, 2)
+// >>> c = a.add(b)
+// >>> c.x
+// 4
+// >>> c.y
+// 6
+// Adding vectors when you have their components is easy: just add the two x components together and the two y components together to get the x and y components for the vector sum.
+
+// class Vector {
+//   constructor(x, y) {
+//     this.x = x;
+//     this.y = y;
+//   }
+//   add(obj) {
+//     this.x = obj.x + this.x;
+//     this.y = obj.y + this.y;
+//     console.log(this);
+//     return this;
+//   }
+//}
+// const _a = new Vector(-1, 2);
+// const _b = new Vector(3, -4);
+// const _c = _a.add(_b);
+// console.log(_c.x);
+// console.log(_c.y);
+
+//? //////////////////////////////////////////////////////////////////////////
+
+// //? 42.Thinkful - Object Drills: Quarks
+
+// Your Quark class should allow you to create quarks of any valid color ("red", "blue", and "green") and any valid flavor ('up', 'down', 'strange', 'charm', 'top', and 'bottom').
+
+// Every quark has the same baryon_number (BaryonNumber in C#): 1/3.
+
+// Every quark should have an .interact() (.Interact() in C#) method that allows any quark to interact with another quark via the strong force. When two quarks interact they exchange colors.
+
+// Example
+// >>> q1 = Quark("red", "up")
+// >>> q1.color
+// "red"
+// >>> q1.flavor
+// "up"
+// >>> q2 = Quark("blue", "strange")
+// >>> q2.color
+// "blue"
+// >>> q2.baryon_number
+// 0.3333333333333333
+// >>> q1.interact(q2)
+// >>> q1.color
+// "blue"
+// >>> q2.color
+// "red"
+
+class Quark {
+  constructor(color, flavor) {
+    this.color = color;
+    this.flavor = flavor;
+    this.baryon_number = 1 / 3;
+  }
+  interact(quark) {
+    // let temp = this.color;
+    // this.color = quark.color;
+    // quark.color = temp;
+    [this.color, quark.color] = [quark.color, this.color];
+  }
+}
+let q1 = new Quark("red", "up");
+let q2 = new Quark("blue", "strange");
+
+q1.interact(q2);
+console.log(q1.color);
