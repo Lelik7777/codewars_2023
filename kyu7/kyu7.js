@@ -1626,3 +1626,46 @@ let q2 = new Quark("blue", "strange");
 
 q1.interact(q2);
 console.log(q1.color);
+
+//? //////////////////////////////////////////////////////////////////////////
+
+// //? 43.Thinkful - String Drills: Quotable
+// This function should take two string parameters: a person's name (name) and a quote of theirs (quote), and return a string attributing the quote to the person in the following format:
+
+// '[name] said: "[quote]"'
+// For example, if name is 'Grae' and 'quote' is 'Practice makes perfect' then your function should return the string
+
+// 'Grae said: "Practice makes perfect"'
+// Unfortunately, something is wrong with the instructions in the function body. Your job is to fix it so the function returns correctly formatted quotes.
+
+// Click the "Train" button to get started, and be careful with your quotation marks.
+const quotable = (name, quote) => `${name} said: "${quote}"`;
+
+//? //////////////////////////////////////////////////////////////////////////
+
+// //? 44.Thinkful - Thinkful - String Drills: Poem formatter
+
+//  You have a collection of lovely poems. Unfortunately, they aren't formatted very well. They're all on one line, like this:
+
+// Beautiful is better than ugly. Explicit is better than implicit. Simple is better than complex. Complex is better than complicated.
+// What you want is to present each sentence on a new line, so that it looks like this:
+
+// Beautiful is better than ugly.
+// Explicit is better than implicit.
+// Simple is better than complex.
+// Complex is better than complicated.
+// Write a function, format_poem() that takes a string like the one line example as an argument and returns a new string that is formatted across multiple lines with each new sentence starting on a new line when you print it out.
+
+// Try to solve this challenge with the str.split() and the str.join() string methods.
+
+// Every sentence will end with a period, and every new sentence will have one space before the previous period. Be careful about trailing whitespace in your solution.
+
+formatPoem = (poem) => poem.split('.').slice(0,-1).map((str)=>str.trim()+'.'+'\n').join('')
+
+console.log(
+  formatPoem(
+    "Beautiful is better than ugly.Explicit is better than implicit.Simple is better than complex.Complex is better than complicated."
+  )
+);
+const arrNum = [3, 4, 5];
+console.log(arrNum.slice(0, -1));
