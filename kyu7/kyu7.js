@@ -1660,7 +1660,7 @@ const quotable = (name, quote) => `${name} said: "${quote}"`;
 
 // Every sentence will end with a period, and every new sentence will have one space before the previous period. Be careful about trailing whitespace in your solution.
 
-formatPoem = (poem) => poem.split('.').slice(0,-1).map((str)=>str.trim()+'.'+'\n').join('')
+const formatPoem = (poem) => poem.split(". ").join(".\n");
 
 console.log(
   formatPoem(
