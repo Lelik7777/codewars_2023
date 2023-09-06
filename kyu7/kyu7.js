@@ -1692,16 +1692,19 @@ console.log(arrNum.slice(0, -1));
 // III. Arrays
 // For the purposes of this Kata, you will only be expected to convert arrays with numbers only into strings. However, on top of fixing it, we would also like to improve it as well. We would like to keep the square brackets ([]) around the "stringified" array as it would be seen in Javascript code. For example:
 
- // e.g.
+// e.g.
 // [].toString() === "[]"
 // [1].toString() === "[1]"
 // [2,4,8,17].toString() === "[2, 4, 8, 17]"
 
-Boolean.prototype.toString=Number.prototype.toString=Array.prototype.toString=function(){
-  return JSON.stringify(this)
-}
+Boolean.prototype.toString =
+  Number.prototype.toString =
+  Array.prototype.toString =
+    function () {
+      return JSON.stringify(this);
+    };
 console.log(true.toString());
-console.log([2,4,5].toString());
+console.log([2, 4, 5].toString());
 
 //? //////////////////////////////////////////////////////////////////////////
 
@@ -1714,10 +1717,52 @@ console.log([2,4,5].toString());
 // The returned area code should be a string, not a number. Every phone number is formatted like in the example, and the only non-alphanumeric characters in the string are apostrophes ' or the punctuation used in the phone number.
 
 function areaCode(text) {
-return text.match(/\(\d+\)/)[0].replace(/[()]/g, '');
+  return text.match(/\(\d+\)/)[0].replace(/[()]/g, "");
 }
 console.log(areaCode2("The 102nd district court's fax line is (124) 816-3264"));
 
-function areaCode2(text){
-  return text.slice(text.indexOf('(')+1,text.indexOf(')'))
+function areaCode2(text) {
+  return text.slice(text.indexOf("(") + 1, text.indexOf(")"));
 }
+
+//? //////////////////////////////////////////////////////////////////////////
+class Person {
+  _name;
+  _age;
+  constructor(name, age) {
+    this._name = name;
+    this._age = age;
+  }
+  set name(name) {
+    this._name = name;
+  }
+  get name() {
+    return this._name;
+  }
+}
+const peter = new Person("peter", 44);
+peter.name = "vasya";
+console.log(peter.name);
+
+//? 47.Averages of numbers
+// #Get the averages of these numbers
+
+// Write a method, that gets an array of integer-numbers and return an array of the averages of each integer-number and his follower, if there is one.
+
+// Example:
+
+// Input:  [ 1, 3, 5, 1, -10]
+// Output:  [ 2, 4, 3, -4.5]
+// If the array has 0 or 1 values or is null, your method should return an empty array.
+
+// Have fun coding it and please don't forget to vote and rank this kata! :-)
+
+const averages = (arr) => {
+  const array = [];
+  for (let i = 0; i < arr.length - 1; i++) {
+    array.push((arr[i] + arr[i + 1]) / 2);
+  }
+
+  return arr.length < 2 || null ? [] : array;
+};
+console.log(averages([1, 3, 5, 1, -10]));
