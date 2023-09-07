@@ -1758,11 +1758,48 @@ console.log(peter.name);
 // Have fun coding it and please don't forget to vote and rank this kata! :-)
 
 const averages = (arr) => {
+  if (!arr || arr.length < 3) return [];
   const array = [];
   for (let i = 0; i < arr.length - 1; i++) {
     array.push((arr[i] + arr[i + 1]) / 2);
   }
 
-  return arr.length < 2 || null ? [] : array;
+  return array;
 };
 console.log(averages([1, 3, 5, 1, -10]));
+
+//? //////////////////////////////////////////////////////////////////////////
+
+// //? 48.Sort an array by value and index
+
+// Sort an array by value and index
+// Your task is to sort an array of integer numbers by the product of the value and the index of the positions.
+
+// For sorting the index starts at 1, NOT at 0!
+// The sorting has to be ascending.
+// The array will never be null and will always contain numbers.
+
+// Example:
+
+// Input: 23, 2, 3, 4, 5
+// Product of value and index:
+// 23 => 23 * 1 = 23  -> Output-Pos 4
+//  2 =>  2 * 2 = 4   -> Output-Pos 1
+//  3 =>  3 * 3 = 9   -> Output-Pos 2
+//  4 =>  4 * 4 = 16  -> Output-Pos 3
+//  5 =>  5 * 5 = 25  -> Output-Pos 5
+
+// Output: 2, 3, 4, 23, 5
+
+// Have fun coding it and please don't forget to vote and rank this kata! :-)
+
+// I have also created other katas. Take a look if you enjoyed this kata!
+
+//алгоритм: 1. создаю пустой объект. 2. создаю новый массив и в него записываю через map() умноженные значения из исходного массива умноженные на индекс+1 3. через цикл for() записываю в объект в ключ значение из нового массива,а в значение - значение из исходного массива 4. сортирую ключи по возрастанию через Object.keys(obj),получая массив отсортированных ключей 5. через map() возращаю новый массив,используя массив отсортированных ключей
+//Предыдущий алгоритм не будет работать,если элементы в массиве дублируются,поскольку ключи в объекте могут быть только уникальными значениями и повторяться не могут,поэтому необходимо использовать матрицу,которую сортируем по второму элементу внутреннего массива,а потом через map() возращаем массив из первых элементов внтуренних массивов
+const sortByValueAndIndex = (array) =>
+  array
+    .map((x, i) => [x, x * (i + 1)])
+    .sort((a, b) => a[1] - b[1])
+    .map((x) => x[0]);
+console.log(sortByValueAndIndex([-3, -12, -24, -6, 29, 16, -26, -29, 21, -1, 26, 16, -19, 25, -20, -12]));
