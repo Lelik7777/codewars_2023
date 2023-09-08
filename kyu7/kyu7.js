@@ -1803,3 +1803,21 @@ const sortByValueAndIndex = (array) =>
     .sort((a, b) => a[1] - b[1])
     .map((x) => x[0]);
 console.log(sortByValueAndIndex([-3, -12, -24, -6, 29, 16, -26, -29, 21, -1, 26, 16, -19, 25, -20, -12]));
+//? //////////////////////////////////////////////////////////////////////////
+
+// //? 49.Return substring instance count
+// Complete the solution so that it returns the number of times the search_text is found within the full_text. Overlap is not permitted : "aaa" contains 1 instance of "aa", not 2.
+
+// Usage example:
+
+// full_text = "aa_bb_cc_dd_bb_e", search_text = "bb"
+//     ---> should return 2 since "bb" shows up twice
+
+// full_text = "aaabbbcccc", search_text = "bbb"
+//     ---> should return 1
+
+function solution(fullText, searchText) {
+  return (fullText.match(new RegExp(searchText, "g"))||[]).length
+}
+console.log(solution("ccddeeccddeecc", "gg"));
+console.log(solution("abbc", "bb"));
