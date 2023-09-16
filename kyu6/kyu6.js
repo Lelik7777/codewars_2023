@@ -28,11 +28,7 @@ console.log(getParticipants(7));
 // "(( @"     =>  "))(("
 
 const duplicateEncode = (word) =>
-  [...word.toLowerCase()]
-    .map((letter, i, arr) =>
-      arr.filter((el) => el === letter).length > 1 ? ")" : "("
-    )
-    .join("");
+  [...word.toLowerCase()].map((letter, i, arr) => (arr.filter((el) => el === letter).length > 1 ? ")" : "(")).join("");
 //variant using regex pattern
 //алгоритм:
 // 1. перевожу всю строку в нижний регистр
@@ -40,9 +36,7 @@ const duplicateEncode = (word) =>
 
 const duplicateEncode2 = (word) => {
   word = word.toLowerCase();
-  return word.replace(/./g, (letter) =>
-    word.indexOf(letter) === word.lastIndexOf(letter) ? "(" : ")"
-  );
+  return word.replace(/./g, (letter) => (word.indexOf(letter) === word.lastIndexOf(letter) ? "(" : ")"));
 };
 
 console.log(duplicateEncode2("recede"));
@@ -58,8 +52,7 @@ console.log(duplicateEncode2("recede"));
 
 // For reference, the first two numbers in the Fibonacci sequence are 0 and 1, and each subsequent number is the sum of the previous two.
 //variant recursion
-const nthFiboRecursion = (n) =>
-  n < 2 ? 0 : n === 2 ? 1 : nthFiboRecursion(n - 1) + nthFiboRecursion(n - 2);
+const nthFiboRecursion = (n) => (n < 2 ? 0 : n === 2 ? 1 : nthFiboRecursion(n - 1) + nthFiboRecursion(n - 2));
 
 //variant by for
 const nthFibo = (n) => {
@@ -91,11 +84,7 @@ const deepCount = (arr) => {
 };
 console.log(deepCount([1, 2, [3, 4, [5]]]));
 
-const deepCount2 = (arr) =>
-  arr.reduce(
-    (acc, cur) => acc + (Array.isArray(cur) ? deepCount2(cur) : 0),
-    arr.length
-  );
+const deepCount2 = (arr) => arr.reduce((acc, cur) => acc + (Array.isArray(cur) ? deepCount2(cur) : 0), arr.length);
 console.log(deepCount2([1, 2, [3, 4, [5]]]));
 //? ///////////////////////////////////////////////////////////////////////////
 
@@ -119,9 +108,7 @@ console.log(deepCount2([1, 2, [3, 4, [5]]]));
 // I have created other katas. Have a look if you like coding and challenges.
 //алгоритм: нужно превратить матрицу в массив длин вложенных массивов и отсортировать их Далее в этой последовательности найти недостающее звено
 function getLengthOfMissingArray(arr) {
-  const lengths = (arr ?? [])
-    .map((el) => (el ? el.length : 0))
-    .sort((a, b) => a - b);
+  const lengths = (arr ?? []).map((el) => (el ? el.length : 0)).sort((a, b) => a - b);
 
   if (!lengths.length || lengths.includes(0)) return 0;
   //проверка на пропущенный элемент в массиве
@@ -130,6 +117,66 @@ function getLengthOfMissingArray(arr) {
   }
 }
 
+console.log(getLengthOfMissingArray([[1, 2], [4, 5, 1, 1], [1], [5, 6, 7, 8, 9]]));
+//? ///////////////////////////////////////////////////////////////////////////
+
+//?6.Coding Meetup #7 - Higher-Order Functions Series - Find the most senior developer
+// You will be given a sequence of objects representing data about developers who have signed up to attend the next coding meetup that you are organising.
+
+// Your task is to return a sequence which includes the developer who is the oldest. In case of a tie, include all same-age senior developers listed in the same order as they appeared in the original input array.
+
+// For example, given the following input array:
+
+// var list1 = [
+//   { firstName: 'Gabriel', lastName: 'X.', country: 'Monaco', continent: 'Europe', age: 49, language: 'PHP' },
+//   { firstName: 'Odval', lastName: 'F.', country: 'Mongolia', continent: 'Asia', age: 38, language: 'Python' },
+//   { firstName: 'Emilija', lastName: 'S.', country: 'Lithuania', continent: 'Europe', age: 19, language: 'Python' },
+//   { firstName: 'Sou', lastName: 'B.', country: 'Japan', continent: 'Asia', age: 49, language: 'PHP' },
+// ];
+// your function should return the following array:
+
+// [
+//   { firstName: 'Gabriel', lastName: 'X.', country: 'Monaco', continent: 'Europe', age: 49, language: 'PHP' },
+//   { firstName: 'Sou', lastName: 'B.', country: 'Japan', continent: 'Asia', age: 49, language: 'PHP' },
+// ]
+// Notes:
+
+// The input array will always be valid and formatted as in the example above and will never be empty.
+//1. find max age 2. filter by this
+
+const findSenior = (list) => list.filter((developer) => developer.age === Math.max(...list.map((x) => x.age)));
+
 console.log(
-  getLengthOfMissingArray([[1, 2], [4, 5, 1, 1], [1], [5, 6, 7, 8, 9]])
+  findSenior([
+    { firstName: "Gabriel", lastName: "X.", country: "Monaco", continent: "Europe", age: 49, language: "PHP" },
+    { firstName: "Odval", lastName: "F.", country: "Mongolia", continent: "Asia", age: 38, language: "Python" },
+    { firstName: "Emilija", lastName: "S.", country: "Lithuania", continent: "Europe", age: 19, language: "Python" },
+    { firstName: "Sou", lastName: "B.", country: "Japan", continent: "Asia", age: 49, language: "PHP" },
+  ])
 );
+//? //////////////////////////////////////////////////////////////////////////
+
+  //? 7.Coding Meetup #8 - Higher-Order Functions Series - Will all continents be represented?
+// You will be given a sequence of objects (associative arrays in PHP) representing data about developers who have signed up to attend the next coding meetup that you are organising.
+
+// Your task is to return:
+
+// true if all of the following continents / geographic zones will be represented by at least one developer: 'Africa', 'Americas', 'Asia', 'Europe', 'Oceania'.
+// false otherwise.
+// For example, given the following input array:
+
+// var list1 = [
+//   { firstName: 'Fatima', lastName: 'A.', country: 'Algeria', continent: 'Africa', age: 25, language: 'JavaScript' },
+//   { firstName: 'Agustín', lastName: 'M.', country: 'Chile', continent: 'Americas', age: 37, language: 'C' },
+//   { firstName: 'Jing', lastName: 'X.', country: 'China', continent: 'Asia', age: 39, language: 'Ruby' },
+//   { firstName: 'Laia', lastName: 'P.', country: 'Andorra', continent: 'Europe', age: 55, language: 'Ruby' },
+//   { firstName: 'Oliver', lastName: 'Q.', country: 'Australia', continent: 'Oceania', age: 65, language: 'PHP' },
+// ];
+// your function should return true as there is at least one developer from the required 5 geographic zones.
+
+// Notes:
+
+// The input array and continent names will always be valid and formatted as in the list above for example 'Africa' will always start with upper-case 'A'.
+//1. get array continents 2. get Set form this array 3. compare it`s length - must be === 5
+
+const allContinents=list=>[...new Set(list.map(dev=>dev.continent))].length>=5;
