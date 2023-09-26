@@ -28,9 +28,13 @@ const brightest = (colorsArr) => {
   };
   //этот массив чисел идентичен по количеству начальному массиву цветов,поэтому индекс максимального числа соответствует индексу самого яркого цвета
   const arrayNumbers = colorsArr.map((color) => getMaxColorValue(color));
-  return colorsArr.at(arrayNumbers.findIndex((el) => el === Math.max(...arrayNumbers)));
+  return colorsArr.at(
+    arrayNumbers.findIndex((el) => el === Math.max(...arrayNumbers))
+  );
 };
-console.log(brightest(["#0D5D1B", "#3DCBE2", "#C0A8DD", "#BAE49F", "#A2D643", "#BBC5A3"]));
+console.log(
+  brightest(['#0D5D1B', '#3DCBE2', '#C0A8DD', '#BAE49F', '#A2D643', '#BBC5A3'])
+);
 //? ///////////////////////////////////////////////////////////////////////////////////////
 
 //?2. Disemvowel Trolls
@@ -38,8 +42,8 @@ console.log(brightest(["#0D5D1B", "#3DCBE2", "#C0A8DD", "#BAE49F", "#A2D643", "#
 // For example, the string "This website is for losers LOL!" would become "Ths wbst s fr lsrs LL!".
 // Note: for this kata y isn't considered a vowel.
 
-const disemvowel = (str) => str.replace(/[aeiou]/gi, "");
-console.log(disemvowel("This website is for losers LOL!"));
+const disemvowel = (str) => str.replace(/[aeiou]/gi, '');
+console.log(disemvowel('This website is for losers LOL!'));
 //? ///////////////////////////////////////////////////////////////////
 
 //?3.Isograms
@@ -50,7 +54,7 @@ console.log(disemvowel("This website is for losers LOL!"));
 // "Dermatoglyphics" --> true "aba" --> false "moOse" --> false (ignore letter case)
 //const isIsogram = (str) => str.length === [...new Set(str.toLowerCase())].length;
 const isIsogram = (str) => str.length === new Set(str.toLowerCase()).size;
-console.log(isIsogram("moose"));
+console.log(isIsogram('moose'));
 //? ///////////////////////////////////////////////////////////////////
 
 //?4.Digits explosion
@@ -58,8 +62,8 @@ console.log(isIsogram("moose"));
 //explode("102269")// return "12222666666999999999"
 //explode("312")// return "333122"
 
-const explode = (str) => [...str].map((num) => num.repeat(+num)).join("");
-console.log(explode("102269"));
+const explode = (str) => [...str].map((num) => num.repeat(+num)).join('');
+console.log(explode('102269'));
 //? //////////////////////////////////////////////////////////////////////////
 
 //?5. Head, Tail, Init and Last
@@ -129,14 +133,14 @@ console.log(array);
 //реализую простой вариант смещения на один элемент
 
 const infiniteLoop = (arr, d, n) => {
-  if (d === "right") {
+  if (d === 'right') {
     for (let i = 0; i < n; i++) {
       arr[0].unshift(arr[2].pop());
       arr[1].unshift(arr[0].pop());
       arr[2].unshift(arr[1].pop());
     }
   }
-  if (d === "left") {
+  if (d === 'left') {
     for (let i = 0; i < n; i++) {
       arr[2].push(arr[0].shift());
       arr[1].push(arr[2].shift());
@@ -151,7 +155,7 @@ infiniteLoop(
     [4, 5, 6],
     [7, 8, 9],
   ],
-  "left",
+  'left',
   1
 );
 
@@ -244,22 +248,25 @@ console.log(c);
 const isolateIt = (arr) =>
   arr.map((str) => {
     if (str.length % 2) {
-      str = str.split("");
-      str.splice(Math.floor(str.length / 2), 1, "|");
-      return str.join("");
+      str = str.split('');
+      str.splice(Math.floor(str.length / 2), 1, '|');
+      return str.join('');
     } else {
-      str = str.split("");
-      str.splice(Math.floor(str.length / 2), 0, "|");
-      return str.join("");
+      str = str.split('');
+      str.splice(Math.floor(str.length / 2), 0, '|');
+      return str.join('');
     }
   });
 
-console.log(isolateIt(["abcd", "efgh", "adscd"]));
+console.log(isolateIt(['abcd', 'efgh', 'adscd']));
 
 // логика в том,что каждую строку(элемент массива) я при помощи метода slice() меняю: вначале я беру первую половину строки,далее прибавляю символ  | и далее беру вторую часть строки с конца
-const isolateIt1 = (arr) => arr.map((str) => str.slice(0, str.length / 2) + "|" + str.slice(-str.length / 2));
+const isolateIt1 = (arr) =>
+  arr.map(
+    (str) => str.slice(0, str.length / 2) + '|' + str.slice(-str.length / 2)
+  );
 
-console.log(isolateIt1(["abcd", "efgh", "adscd"]));
+console.log(isolateIt1(['abcd', 'efgh', 'adscd']));
 
 //? //////////////////////////////////////////////////////////////////////////
 
@@ -348,7 +355,7 @@ const mirrorImage = (arr) => {
   const result = arr.some((_, i) => {
     firstNum = arr[i];
     secondNum = arr[i + 1];
-    polidromSecondNum = +String(secondNum).split("").reverse().join("");
+    polidromSecondNum = +String(secondNum).split('').reverse().join('');
     return firstNum === polidromSecondNum;
   });
   if (!result) return [-1, -1];
@@ -361,21 +368,21 @@ const mirrorImage2 = (arr) => {
     b = 0;
   const res = arr.some((x, i) => {
     [a, b] = [x, arr[i + 1]];
-    return +[...String(b)].reverse().join("") === a;
+    return +[...String(b)].reverse().join('') === a;
   });
   return res ? [a, b] : [-1, -1];
 };
 
 console.log(mirrorImage2([454, 86, 57, 75, 16, 88]));
 
-console.log(Array(4).join("a"));
-console.log([...Array(4)].join("a"));
-console.log(new Array(4 + 1).join("a"));
+console.log(Array(4).join('a'));
+console.log([...Array(4)].join('a'));
+console.log(new Array(4 + 1).join('a'));
 
 var cache = [];
 for (var i = 0; i < 26; i++) cache[i] = String.fromCharCode(97 + i);
 console.log(cache);
-var result = cache.join("");
+var result = cache.join('');
 console.log(result);
 
 //? //////////////////////////////////////////////////////////////////////////
@@ -402,7 +409,7 @@ const bigToSmall = (arr) =>
   []
     .concat(...arr)
     .sort((a, b) => b - a)
-    .join(">");
+    .join('>');
 bigToSmall([
   [1, 2],
   [3, 4],
@@ -420,7 +427,9 @@ var arr1 = [1, 2, 3, 4, 5];
 var arr2 = [6, 7, 8, 9, 10];
 //var result=arr1.map(x=>x*x).reduce((a,b,i,ar)=>a.concat(ar[i],arr2[i]),[])
 //ES6 syntax
-var result = arr1.map((x) => x * x).reduce((a, b, i, ar) => [...a, ar[i], arr2[i]], []);
+var result = arr1
+  .map((x) => x * x)
+  .reduce((a, b, i, ar) => [...a, ar[i], arr2[i]], []);
 
 console.log(result); //output: [ 1, 6, 4, 7, 9, 8, 16, 9, 25, 10 ]
 
@@ -456,9 +465,11 @@ console.log(result); //output: [ 1, 6, 4, 7, 9, 8, 16, 9, 25, 10 ]
 const tailAndHead = (arr) =>
   arr
     .map((num, i, ar) =>
-      i < arr.length - 1 ? Number(String(num).slice(-1)) + Number(String(ar[i + 1]).slice(0, 1)) : ""
+      i < arr.length - 1
+        ? Number(String(num).slice(-1)) + Number(String(ar[i + 1]).slice(0, 1))
+        : ''
     )
-    .filter((x) => x !== "")
+    .filter((x) => x !== '')
     .reduce((acc, cur) => acc * cur);
 
 console.log(tailAndHead([123, 456, 789, 12, 34, 56, 78]));
@@ -492,8 +503,16 @@ console.log(
 // Using string template and ternary operator can make your work easier.
 
 const blackAndWhite = (arr) => {
-  const answers = ["It's a fake array", "It's a black array", "It's a white array"];
-  return !Array.isArray(arr) ? answers[0] : arr.indexOf(5) !== -1 && arr.indexOf(13) !== -1 ? answers[1] : answers[2];
+  const answers = [
+    "It's a fake array",
+    "It's a black array",
+    "It's a white array",
+  ];
+  return !Array.isArray(arr)
+    ? answers[0]
+    : arr.indexOf(5) !== -1 && arr.indexOf(13) !== -1
+    ? answers[1]
+    : answers[2];
 };
 
 console.log(blackAndWhite(5, 13)); // should return "It's a fake array"
@@ -517,7 +536,7 @@ console.log(blackAndWhite([5, 12])); // should return "It's a white array"
 // roundIt(34.56) should return 35
 
 const roundIt = (n) => {
-  const str = String(n).split(".");
+  const str = String(n).split('.');
   if (str[0].length < str[1].length) return Math.ceil(n);
   if (str[0].length > str[1].length) return Math.floor(n);
   if (str[0].length === str[1].length) return Math.round(n);
@@ -525,8 +544,12 @@ const roundIt = (n) => {
 console.log(roundIt(98.54));
 
 const roundIt1 = (n) => {
-  const [a, b] = String(n).split(".");
-  return a.length > b.length ? Math.floor(n) : a.length < b.length ? Math.ceil(n) : Math.round(n);
+  const [a, b] = String(n).split('.');
+  return a.length > b.length
+    ? Math.floor(n)
+    : a.length < b.length
+    ? Math.ceil(n)
+    : Math.round(n);
 };
 
 //? //////////////////////////////////////////////////////////////////////////
@@ -600,7 +623,10 @@ console.log(maxMin1([10, 20, 30, 40], [111, 11, 1, -111]));
 // cutCube(256,4) should return false
 // The two examples above seems to meet our requirements, but please note: a cube is unable to evenly divided into 50 pieces or 4 pieces. Only cubic numbers(such as 8,27,64,125,216...) can be used to divide the cube evenly.
 
-const cutCube = (volume, n) => (Number.isInteger(Math.cbrt(n)) ? Number.isInteger(Math.cbrt(volume / n)) : false);
+const cutCube = (volume, n) =>
+  Number.isInteger(Math.cbrt(n))
+    ? Number.isInteger(Math.cbrt(volume / n))
+    : false;
 
 console.log(cutCube(27, 27));
 console.log(cutCube(512, 64));
@@ -636,8 +662,8 @@ console.log(getRandomNum(2, 4));
 // 1.создать массив на 8 ячеек 2.пробегаемся циклом по этому массиву 3. первые две ячейки забиваем заглавынми буквами 4. следующие 4 ячейки забиваем цифрами 5.в оставшиеся забиваем два символа
 
 const rndCode = () => {
-  const string = "ABCDEFGHIJKLM";
-  const symbols = "~!@#$%^&*";
+  const string = 'ABCDEFGHIJKLM';
+  const symbols = '~!@#$%^&*';
   const code = [];
 
   const length = 8;
@@ -666,7 +692,7 @@ const rndCode = () => {
       }
     }
   }
-  return code.join("");
+  return code.join('');
 };
 console.log(rndCode());
 //? //////////////////////////////////////////////////////////////////////////
@@ -674,15 +700,15 @@ console.log(rndCode());
 //? 19.Training JS #37: Unlock new weapon---RegExp Object
 
 const rex = /abc/;
-const rex2 = new RegExp("abc");
+const rex2 = new RegExp('abc');
 console.log(rex);
 console.log(rex2);
 
-const words = ["abc", "123", "&##"];
+const words = ['abc', '123', '&##'];
 for (const iterator of words) {
   console.log(new RegExp(iterator));
 }
-var str = "ABABCDEababcde";
+var str = 'ABABCDEababcde';
 console.log(str.match(/a/)[0]);
 
 console.log(str.match(/a/gi).length);
@@ -696,29 +722,30 @@ console.log(str.match(/a/gi).length);
 // countAnimals("dog,dog,cat",["pig","cow"]); //=> [0,0]
 //  возвращает числовой массив, каждый элемент которого это число совпадений из строки. 1. пробежаться по массиву и найти количество совпадений элемента массива и его копии в строке(это через длину массива совпадений)
 
-const countAnimals = (str, arr) => arr.map((animal) => (str.match(new RegExp(animal, "g")) ?? []).length);
-console.log("726", countAnimals("pig", ["dog", "cat"]));
+const countAnimals = (str, arr) =>
+  arr.map((animal) => (str.match(new RegExp(animal, 'g')) ?? []).length);
+console.log('726', countAnimals('pig', ['dog', 'cat']));
 
 //? //////////////////////////////////////////////////////////////////////////
 
 //? 20.Training JS #38: Regular Expression--"^","$", "." and test()
 
-console.log("sfasfsdfsadfsadfsad".match(/.{1,3}/g));
-var str = "abcabc";
+console.log('sfasfsdfsadfsadfsad'.match(/.{1,3}/g));
+var str = 'abcabc';
 console.log(str.replace(/^./, str[0].toUpperCase()));
-console.log("hello world".split(/ /));
-"hello world".replace(/^./, (x) => console.log(x));
-"hello world".replace(/.\b/g, (x) => console.log(x));
-"whole words only".replace(/\bwords\b/g, (x) => console.log(x));
+console.log('hello world'.split(/ /));
+'hello world'.replace(/^./, (x) => console.log(x));
+'hello world'.replace(/.\b/g, (x) => console.log(x));
+'whole words only'.replace(/\bwords\b/g, (x) => console.log(x));
 
-var word = "abcd";
+var word = 'abcd';
 //method 1:
 //
 var regstr =
   word[0] + //first letter
-  word.slice(1, -1).replace(/./g, ".") + //middle letters
+  word.slice(1, -1).replace(/./g, '.') + //middle letters
   word.slice(-1);
-var reg1 = new RegExp("^" + regstr + "$");
+var reg1 = new RegExp('^' + regstr + '$');
 console.log(reg1);
 
 //Coding in function findSimilarity. function accept two parameters: str, a sentence contains some words, separated by spaces; word, a sample word.
@@ -741,43 +768,51 @@ console.log(reg1);
 const findSimilarity = (str, word) =>
   str
     .split(/ /)
-    .filter((w) => w[0] === word[0] && w.slice(-1) === word.slice(-1) && w.length === word.length)
-    .join(" ");
-console.log(findSimilarity("bag dog dig dot doog dogs", "dog"));
-let word11 = "dog";
-var reg = new RegExp("^" + word11.replace(/\B.\B/g, ".") + "$");
+    .filter(
+      (w) =>
+        w[0] === word[0] &&
+        w.slice(-1) === word.slice(-1) &&
+        w.length === word.length
+    )
+    .join(' ');
+console.log(findSimilarity('bag dog dig dot doog dogs', 'dog'));
+let word11 = 'dog';
+var reg = new RegExp('^' + word11.replace(/\B.\B/g, '.') + '$');
 console.log(reg);
 
-console.log("dogs".replace(/\B..\B/, "."));
-console.log("dogs cats".replace(/\b./g, "."));
+console.log('dogs'.replace(/\B..\B/, '.'));
+console.log('dogs cats'.replace(/\b./g, '.'));
 
 let stringMy =
-  "ПРОХОЖДЕНИЕ СОБЕСОВ И ПОЛУЧЕНИЕ РАБОТЫ РАЗРАБОМ - ЭТО РАЗРЕШЕНИЕ ОТЛОЖЕННОЙ МНОЙ ЕЩЕ В МОЛОДОСТИ ЗАДАЧИ, КОГДА Я КАТЕГОРИЧЕСКИ ОТКАЗАЛСЯ ИДТИ В ИНТЕРНАТУРУ";
+  'ПРОХОЖДЕНИЕ СОБЕСОВ И ПОЛУЧЕНИЕ РАБОТЫ РАЗРАБОМ - ЭТО РАЗРЕШЕНИЕ ОТЛОЖЕННОЙ МНОЙ ЕЩЕ В МОЛОДОСТИ ЗАДАЧИ, КОГДА Я КАТЕГОРИЧЕСКИ ОТКАЗАЛСЯ ИДТИ В ИНТЕРНАТУРУ';
 console.log(stringMy.toLowerCase());
 
 //
-let str00 = "xx xax xaax xaaax";
-console.log(str00.replace(/xa{1,2}/g, "!"));
+let str00 = 'xx xax xaax xaaax';
+console.log(str00.replace(/xa{1,2}/g, '!'));
 function fakeBin(x) {
   return x.replace(/./g, (d) => +(d >= 5));
 }
-console.log(fakeBin("23489"));
+console.log(fakeBin('23489'));
 console.log(+true);
 console.log(+false);
-console.log("hello".replace(/.\b/g, "*")); // заменить все буквы кроме последней
-str.replace(/\w+/g, (x) => x.slice(0, -1).toUpperCase() + x.slice(-1).toLowerCase());
-console.log("hello".slice(0, -1));
+console.log('hello'.replace(/.\b/g, '*')); // заменить все буквы кроме последней
+str.replace(
+  /\w+/g,
+  (x) => x.slice(0, -1).toUpperCase() + x.slice(-1).toLowerCase()
+);
+console.log('hello'.slice(0, -1));
 
 //? //////////////////////////////////////////////////////////////////////////
 
 //? 21.Training JS #39: Regular Expression--"?", "*", "+" and "{}"
 
-var str01 = "aaaabbbb";
-console.log(str01.match(/сb/) + "");
-console.log([3, 4, 5] + "");
-console.log(["hello", "world"] + "");
+var str01 = 'aaaabbbb';
+console.log(str01.match(/сb/) + '');
+console.log([3, 4, 5] + '');
+console.log(['hello', 'world'] + '');
 
-var s = "100001,111,12222221,222,3333,12321,14441";
+var s = '100001,111,12222221,222,3333,12321,14441';
 console.log(s.match(/1.*?1/g));
 
 //This time you do not need coding in function. You just need to write a regular expression that matches the specified numeric string. I've given the regular expression name: "regex", please don't modify the name.
@@ -801,7 +836,7 @@ console.log(s.match(/1.*?1/g));
 // regex.test("-90000123") should return false
 
 const regex = /9.*0{4}/;
-console.log(/-?9\d*0{4}$/.test("-90000123"));
+console.log(/-?9\d*0{4}$/.test('-90000123'));
 
 //? //////////////////////////////////////////////////////////////////////////
 
@@ -848,8 +883,10 @@ console.log(/-?9\d*0{4}$/.test("-90000123"));
 
 const regex1 = /(http|https):\/\/[a-z0-9\.]+(\.net|\.com)/gi;
 const regex2 = /https?:\/\/[a-z0-9\.]+\.(net|com)/gi;
-console.log("http://hEllo233.44.com".match(regex1));
-console.log("http://www.codewars1.com!@#$%http://www.codewars2.net".match(regex2));
+console.log('http://hEllo233.44.com'.match(regex1));
+console.log(
+  'http://www.codewars1.com!@#$%http://www.codewars2.net'.match(regex2)
+);
 
 //? //////////////////////////////////////////////////////////////////////////
 
@@ -857,15 +894,15 @@ console.log("http://www.codewars1.com!@#$%http://www.codewars2.net".match(regex2
 
 function isPair(s) {
   var r = /\(\)|\[\]|\{\}/g;
-  while (r.test(s)) s = s.replace(r, "");
-  return s == "";
+  while (r.test(s)) s = s.replace(r, '');
+  return s == '';
 }
 
-console.log(isPair("()")); //output: true
-console.log(isPair("((()))")); //output: true
+console.log(isPair('()')); //output: true
+console.log(isPair('((()))')); //output: true
 
-console.log(isPair(")(")); //output: false
-console.log(isPair("({[})")); //output: false
+console.log(isPair(')(')); //output: false
+console.log(isPair('({[})')); //output: false
 
 //You might have guessed the task. Yes, This time your task is to write a regular expressions matching all palindrome substring of a string.
 
@@ -890,7 +927,7 @@ console.log(isPair("({[})")); //output: false
 
 //скопировал, так и не смог разобраться
 var regex02 = /\b(\w)(\w)?(\w)?\w?\3\2\1\b/g;
-console.log("qbcddcbq".match(regex02));
+console.log('qbcddcbq'.match(regex02));
 
 //    \b - spaces around the words / numbers
 //    (\w) - first symbol
@@ -933,7 +970,8 @@ const lostSheep = (friday, saturday, total) => {
 
 console.log(lostSheep([], [4, 5], 21));
 
-const lostSheep1 = (f, s, t) => t - [...f, ...s].reduce((acc, cur) => acc + cur, 0);
+const lostSheep1 = (f, s, t) =>
+  t - [...f, ...s].reduce((acc, cur) => acc + cur, 0);
 console.log(lostSheep1([], [], 21));
 
 //? //////////////////////////////////////////////////////////////////////////
@@ -988,16 +1026,16 @@ console.log(Array(2));
 // "Spaceship lost forever."
 //здесь важно понять,что принимает ф-ция. Она принимает строку,состоящую из точек  и буквы Х. Поэтому сначала мне нужно превратить ее в массив подстрок,где переход на новыю строку яляется разделителем. Далее нужно поменять последовательность этих подстрок, поскольку по условию начало находится в конце. Далее пробежаться двумя циклами и перебрать элементы. Как только встречаем букву Х, то возвращаем массив с координатами. Если же буквы нет, то возвращаем кодовую фразу
 
-const findSpaceship = (map = "") => {
-  map = map.split("\n").reverse();
+const findSpaceship = (map = '') => {
+  map = map.split('\n').reverse();
   for (let i = 0; i < map.length; i++) {
     for (let j = 0; j < map[i].length; j++) {
-      if (map[i][j] === "X") {
+      if (map[i][j] === 'X') {
         return [j, i];
       }
     }
   }
-  return "Spaceship lost forever.";
+  return 'Spaceship lost forever.';
 };
 console.log(
   findSpaceship(`..........
@@ -1024,19 +1062,21 @@ console.log(
 // If there is no possible combination of socks, return an empty array.
 
 const getSocks = (name, arr) => {
-  if (name === "Henry") {
+  if (name === 'Henry') {
     const set = new Set(arr);
-    const res = arr.map((el) => (set.has(el) ? set.delete(el) : el)).filter((x) => x !== true);
+    const res = arr
+      .map((el) => (set.has(el) ? set.delete(el) : el))
+      .filter((x) => x !== true);
     return [...res, ...res];
   }
 
-  if (name === "Punky") {
+  if (name === 'Punky') {
     const res = [...new Set(arr)];
     return res.length > 1 ? [res[0], res[1]] : [];
   }
 };
 
-console.log(getSocks("Henry", ["", "hot", "set", "blue"]));
+console.log(getSocks('Henry', ['', 'hot', 'set', 'blue']));
 
 //? //////////////////////////////////////////////////////////////////////////
 
@@ -1088,13 +1128,22 @@ const addingShifted = (arr, shift) => {
   let array = arr;
   for (let i = 0; i < arr.length; i++) {
     if (i === 0) {
-      array[i].push(Array.from({ length: shift * (arr.length - 1) }, (x) => (x = 0)));
+      array[i].push(
+        Array.from({ length: shift * (arr.length - 1) }, (x) => (x = 0))
+      );
     } else if (i === arr.length - 1) {
-      array[i].unshift(Array.from({ length: shift * (arr.length - 1) }, (x) => (x = 0)));
+      array[i].unshift(
+        Array.from({ length: shift * (arr.length - 1) }, (x) => (x = 0))
+      );
     } else {
       array[i].unshift(Array.from({ length: shift * i }, (x) => (x = 0)));
 
-      array[i].push(Array.from({ length: (array.length - 1) * shift - shift * i }, (x) => (x = 0)));
+      array[i].push(
+        Array.from(
+          { length: (array.length - 1) * shift - shift * i },
+          (x) => (x = 0)
+        )
+      );
     }
   }
   array = array.map((x) => x.flat());
@@ -1121,10 +1170,14 @@ console.log(
     3
   )
 );
-const str11 = "134";
-console.log(str11.padEnd(str11.length + 3, "0"));
+const str11 = '134';
+console.log(str11.padEnd(str11.length + 3, '0'));
 
-console.log(["abc", "cbd"].map((x) => x.replace(new RegExp(`^${x[0]}`), x[0].toLocaleUpperCase())));
+console.log(
+  ['abc', 'cbd'].map((x) =>
+    x.replace(new RegExp(`^${x[0]}`), x[0].toLocaleUpperCase())
+  )
+);
 console.log(Array.from({ length: 3 }, (x) => (x = 0)));
 
 //? //////////////////////////////////////////////////////////////////////////
@@ -1156,8 +1209,8 @@ const arrCheck1 = (value) => value.every(Array.isArray);
 // 1.Math.min([...arr]) 2. arrray.indexOf(Math.min([...arr]))
 
 const min = (arr, string) => {
-  if (string === "value") return Math.min(...arr);
-  if (string === "index") return arr.indexOf(Math.min(...arr));
+  if (string === 'value') return Math.min(...arr);
+  if (string === 'index') return arr.indexOf(Math.min(...arr));
 };
 
 //? //////////////////////////////////////////////////////////////////////////
@@ -1175,10 +1228,10 @@ const min = (arr, string) => {
 // if (x) == ['a', 3] you should return [['a', 3], ['a', 3], ['a', 3]].
 
 const explode0 = (x) => {
-  if (x.every((num) => typeof num !== "number")) return "Void!";
+  if (x.every((num) => typeof num !== 'number')) return 'Void!';
   let sum = 0;
   for (let i = 0; i < x.length; i++) {
-    if (typeof x[i] === "number") sum += x[i];
+    if (typeof x[i] === 'number') sum += x[i];
   }
   return Array.from({ length: sum }, (el) => x);
 };
@@ -1222,41 +1275,41 @@ const boredom = (staff) => {
     IS: 8,
     retail: 5,
     cleaning: 4,
-    "passing about": 25,
+    'passing about': 25,
   };
   console.log(Object.values(staff).map((el) => obj[el]));
   const res = Object.values(staff)
     .map((el) => obj[el])
     .reduce((a, c) => a + c, 0);
-  if (+res <= 80) return "kill me now";
-  if (+res < 100 && +res > 80) return "i can handle this";
-  if (+res > 100) return "party time!!";
+  if (+res <= 80) return 'kill me now';
+  if (+res < 100 && +res > 80) return 'i can handle this';
+  if (+res > 100) return 'party time!!';
 };
 boredom({
-  tim: "change",
-  jim: "accounts",
-  randy: "canteen",
-  sandy: "change",
-  andy: "change",
-  katie: "IS",
-  laura: "change",
-  saajid: "IS",
-  alex: "trading",
-  john: "accounts",
-  mr: "passing about",
+  tim: 'change',
+  jim: 'accounts',
+  randy: 'canteen',
+  sandy: 'change',
+  andy: 'change',
+  katie: 'IS',
+  laura: 'change',
+  saajid: 'IS',
+  alex: 'trading',
+  john: 'accounts',
+  mr: 'passing about',
 });
 boredom({
-  tim: "IS",
-  jim: "finance",
-  randy: "pissing about",
-  sandy: "cleaning",
-  andy: "cleaning",
-  katie: "cleaning",
-  laura: "pissing about",
-  saajid: "regulation",
-  alex: "regulation",
-  john: "accounts",
-  mr: "canteen",
+  tim: 'IS',
+  jim: 'finance',
+  randy: 'pissing about',
+  sandy: 'cleaning',
+  andy: 'cleaning',
+  katie: 'cleaning',
+  laura: 'pissing about',
+  saajid: 'regulation',
+  alex: 'regulation',
+  john: 'accounts',
+  mr: 'canteen',
 });
 
 //? //////////////////////////////////////////////////////////////////////////
@@ -1330,10 +1383,12 @@ const scrabbleScore = (str) => {
     z: 10,
   };
   if (str.length < 1) return 0;
-  return [...str.replace(/\s/g, "")].map((x) => letters[x.toLowerCase()]).reduce((a, c) => a + c, 0);
+  return [...str.replace(/\s/g, '')]
+    .map((x) => letters[x.toLowerCase()])
+    .reduce((a, c) => a + c, 0);
 };
 
-console.log(scrabbleScore("st re et"));
+console.log(scrabbleScore('st re et'));
 
 //? //////////////////////////////////////////////////////////////////////////
 
@@ -1342,7 +1397,8 @@ console.log(scrabbleScore("st re et"));
 
 // The array will never be empty.
 
-const average = (scores) => Math.round(scores.reduce((a, c) => a + c, 0) / scores.length);
+const average = (scores) =>
+  Math.round(scores.reduce((a, c) => a + c, 0) / scores.length);
 console.log(average([49, 3, 5, 300, 7]));
 //? //////////////////////////////////////////////////////////////////////////
 
@@ -1379,37 +1435,50 @@ const scoreboard = (str) => {
     nine: 9,
   };
   return str
-    .split(" ")
+    .split(' ')
     .splice(-2)
     .map((el) => score[el]);
 };
 
-console.log(scoreboard("The score is four nil"));
+console.log(scoreboard('The score is four nil'));
 
 function scoreboard1(string) {
-  var dict = { nil: 0, one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9 };
-  return string.match(/(nil|one|two|three|four|five|six|seven|eight|nine)/g).map((e) => dict[e]);
+  var dict = {
+    nil: 0,
+    one: 1,
+    two: 2,
+    three: 3,
+    four: 4,
+    five: 5,
+    six: 6,
+    seven: 7,
+    eight: 8,
+    nine: 9,
+  };
+  return string
+    .match(/(nil|one|two|three|four|five|six|seven|eight|nine)/g)
+    .map((e) => dict[e]);
 }
 
 //? //////////////////////////////////////////////////////////////////////////
 
 //? 37.Convert the score
 console.log(
-  "34 45 54"
-    .split(" ")
-    .map((x, i) => (i < 2 ? x : ""))
-    .filter((x) => x !== "")
+  '34 45 54'
+    .split(' ')
+    .map((x, i) => (i < 2 ? x : ''))
+    .filter((x) => x !== '')
 );
 
 const obj = {
-  name: "bob",
+  name: 'bob',
   age: 323,
-  job: "admin",
-  who: "man",
+  job: 'admin',
+  who: 'man',
 };
 
 function getInfo({ name, job }) {
-  console.log("name is ", name, "job is ", job);
+  console.log('name is ', name, 'job is ', job);
 }
 getInfo(obj);
 
@@ -1489,7 +1558,8 @@ console.log(unflatten1([3, 5, 2, 1]));
 
 // For input, you can trust that neither the main list nor the sublists will be empty.
 
-const processData = (list) => list.map((sublis) => sublis[0] - sublis[1]).reduce((a, c) => a * c, 1);
+const processData = (list) =>
+  list.map((sublis) => sublis[0] - sublis[1]).reduce((a, c) => a * c, 1);
 
 console.log(
   processData([
@@ -1532,13 +1602,13 @@ const inverseSlice = (items, a, b) => {
 
 console.log(inverseSlice([12, 14, 63, 72, 55, 24], 0, 3));
 
-let matrix = [["hello"], ["world"]];
+let matrix = [['hello'], ['world']];
 matrix = matrix.map((x) => String(x).repeat(2));
 console.log(matrix);
 
-console.log(matrix.map((x) => [].fill("h", 4)));
+console.log(matrix.map((x) => [].fill('h', 4)));
 
-const matrix1 = [["hello"], ["world"]];
+const matrix1 = [['hello'], ['world']];
 const res = matrix1.map((a) => Array(4).fill(...a));
 console.log(res);
 //? //////////////////////////////////////////////////////////////////////////
@@ -1621,8 +1691,8 @@ class Quark {
     [this.color, quark.color] = [quark.color, this.color];
   }
 }
-let q1 = new Quark("red", "up");
-let q2 = new Quark("blue", "strange");
+let q1 = new Quark('red', 'up');
+let q2 = new Quark('blue', 'strange');
 
 q1.interact(q2);
 console.log(q1.color);
@@ -1660,11 +1730,11 @@ const quotable = (name, quote) => `${name} said: "${quote}"`;
 
 // Every sentence will end with a period, and every new sentence will have one space before the previous period. Be careful about trailing whitespace in your solution.
 
-const formatPoem = (poem) => poem.split(". ").join(".\n");
+const formatPoem = (poem) => poem.split('. ').join('.\n');
 
 console.log(
   formatPoem(
-    "Beautiful is better than ugly.Explicit is better than implicit.Simple is better than complex.Complex is better than complicated."
+    'Beautiful is better than ugly.Explicit is better than implicit.Simple is better than complex.Complex is better than complicated.'
   )
 );
 const arrNum = [3, 4, 5];
@@ -1717,12 +1787,12 @@ console.log([2, 4, 5].toString());
 // The returned area code should be a string, not a number. Every phone number is formatted like in the example, and the only non-alphanumeric characters in the string are apostrophes ' or the punctuation used in the phone number.
 
 function areaCode(text) {
-  return text.match(/\(\d+\)/)[0].replace(/[()]/g, "");
+  return text.match(/\(\d+\)/)[0].replace(/[()]/g, '');
 }
 console.log(areaCode2("The 102nd district court's fax line is (124) 816-3264"));
 
 function areaCode2(text) {
-  return text.slice(text.indexOf("(") + 1, text.indexOf(")"));
+  return text.slice(text.indexOf('(') + 1, text.indexOf(')'));
 }
 
 //? //////////////////////////////////////////////////////////////////////////
@@ -1740,8 +1810,8 @@ class Person {
     return this._name;
   }
 }
-const peter = new Person("peter", 44);
-peter.name = "vasya";
+const peter = new Person('peter', 44);
+peter.name = 'vasya';
 console.log(peter.name);
 
 //? 47.Averages of numbers
@@ -1802,7 +1872,11 @@ const sortByValueAndIndex = (array) =>
     .map((x, i) => [x, x * (i + 1)])
     .sort((a, b) => a[1] - b[1])
     .map((x) => x[0]);
-console.log(sortByValueAndIndex([-3, -12, -24, -6, 29, 16, -26, -29, 21, -1, 26, 16, -19, 25, -20, -12]));
+console.log(
+  sortByValueAndIndex([
+    -3, -12, -24, -6, 29, 16, -26, -29, 21, -1, 26, 16, -19, 25, -20, -12,
+  ])
+);
 //? //////////////////////////////////////////////////////////////////////////
 
 // //? 49.Return substring instance count
@@ -1818,10 +1892,10 @@ console.log(sortByValueAndIndex([-3, -12, -24, -6, 29, 16, -26, -29, 21, -1, 26,
 
 function solution(fullText, searchText) {
   //проверяем,если null, return []
-  return (fullText.match(new RegExp(searchText, "g")) || []).length;
+  return (fullText.match(new RegExp(searchText, 'g')) || []).length;
 }
-console.log(solution("ccddeeccddeecc", "gg"));
-console.log(solution("abbc", "bb"));
+console.log(solution('ccddeeccddeecc', 'gg'));
+console.log(solution('abbc', 'bb'));
 
 //? //////////////////////////////////////////////////////////////////////////
 
@@ -1850,36 +1924,57 @@ console.log(solution("abbc", "bb"));
 
 const getFirstPython = (list) => {
   for (let i = 0; i < list.length; i++) {
-    if (list[i].language === "Python") {
-      return [list[i].firstName, list[i].country].join(", ");
+    if (list[i].language === 'Python') {
+      return [list[i].firstName, list[i].country].join(', ');
     }
   }
-  return "There will be no Python developers";
+  return 'There will be no Python developers';
 };
 var list2 = [
-  { firstName: "Kseniya", lastName: "T.", country: "Belarus", continent: "Europe", age: 29, language: "JavaScript" },
   {
-    firstName: "Amar",
-    lastName: "V.",
-    country: "Bosnia and Herzegovina",
-    continent: "Europe",
+    firstName: 'Kseniya',
+    lastName: 'T.',
+    country: 'Belarus',
+    continent: 'Europe',
+    age: 29,
+    language: 'JavaScript',
+  },
+  {
+    firstName: 'Amar',
+    lastName: 'V.',
+    country: 'Bosnia and Herzegovina',
+    continent: 'Europe',
     age: 32,
-    language: "Ruby",
+    language: 'Ruby',
   },
 ];
 
 console.log(
   getFirstPython([
-    { firstName: "Mark", lastName: "G.", country: "Scotland", continent: "Europe", age: 22, language: "JavaScript" },
     {
-      firstName: "Victoria",
-      lastName: "T.",
-      country: "Puerto Rico",
-      continent: "Americas",
-      age: 30,
-      language: "Python",
+      firstName: 'Mark',
+      lastName: 'G.',
+      country: 'Scotland',
+      continent: 'Europe',
+      age: 22,
+      language: 'JavaScript',
     },
-    { firstName: "Emma", lastName: "B.", country: "Norway", continent: "Europe", age: 19, language: "Clojure" },
+    {
+      firstName: 'Victoria',
+      lastName: 'T.',
+      country: 'Puerto Rico',
+      continent: 'Americas',
+      age: 30,
+      language: 'Python',
+    },
+    {
+      firstName: 'Emma',
+      lastName: 'B.',
+      country: 'Norway',
+      continent: 'Europe',
+      age: 19,
+      language: 'Clojure',
+    },
   ])
 );
 
@@ -1903,7 +1998,9 @@ console.log(
 // If, there are no JavaScript developers from Europe then your function should return 0.
 
 const countDevelopers = (list) =>
-  list.filter((dev) => dev.language === "JavaScript" && dev.continent === "Europe").length;
+  list.filter(
+    (dev) => dev.language === 'JavaScript' && dev.continent === 'Europe'
+  ).length;
 
 //? //////////////////////////////////////////////////////////////////////////
 
@@ -1943,15 +2040,29 @@ const greetingDevelopers = (list) =>
   }));
 console.log(
   greetingDevelopers([
-    { firstName: "Sofia", lastName: "I.", country: "Argentina", continent: "Americas", age: 35, language: "Java" },
-    { firstName: "Lukas", lastName: "X.", country: "Croatia", continent: "Europe", age: 35, language: "Python" },
     {
-      firstName: "Madison",
-      lastName: "U.",
-      country: "United States",
-      continent: "Americas",
+      firstName: 'Sofia',
+      lastName: 'I.',
+      country: 'Argentina',
+      continent: 'Americas',
+      age: 35,
+      language: 'Java',
+    },
+    {
+      firstName: 'Lukas',
+      lastName: 'X.',
+      country: 'Croatia',
+      continent: 'Europe',
+      age: 35,
+      language: 'Python',
+    },
+    {
+      firstName: 'Madison',
+      lastName: 'U.',
+      country: 'United States',
+      continent: 'Americas',
       age: 32,
-      language: "Ruby",
+      language: 'Ruby',
     },
   ])
 );
@@ -1974,9 +2085,11 @@ console.log(
 // ];
 // your function should return true.
 
-const isRubyComing = (list) => (list.find((developer) => developer.language === "Ruby") ? true : false);
+const isRubyComing = (list) =>
+  list.find((developer) => developer.language === 'Ruby') ? true : false;
 
-const isRubyComing2 = (list) => list.some((developer) => developer.language === "Ruby");
+const isRubyComing2 = (list) =>
+  list.some((developer) => developer.language === 'Ruby');
 //? //////////////////////////////////////////////////////////////////////////
 
 // //? 54.Coding Meetup #5 - Higher-Order Functions Series - Prepare the count of languages
@@ -2011,10 +2124,38 @@ const countLanguages = (list) => {
   return languages;
 };
 countLanguages([
-  { firstName: "Noah", lastName: "M.", country: "Switzerland", continent: "Europe", age: 19, language: "C" },
-  { firstName: "Anna", lastName: "R.", country: "Liechtenstein", continent: "Europe", age: 52, language: "JavaScript" },
-  { firstName: "Ramon", lastName: "R.", country: "Paraguay", continent: "Americas", age: 29, language: "Ruby" },
-  { firstName: "George", lastName: "B.", country: "England", continent: "Europe", age: 81, language: "C" },
+  {
+    firstName: 'Noah',
+    lastName: 'M.',
+    country: 'Switzerland',
+    continent: 'Europe',
+    age: 19,
+    language: 'C',
+  },
+  {
+    firstName: 'Anna',
+    lastName: 'R.',
+    country: 'Liechtenstein',
+    continent: 'Europe',
+    age: 52,
+    language: 'JavaScript',
+  },
+  {
+    firstName: 'Ramon',
+    lastName: 'R.',
+    country: 'Paraguay',
+    continent: 'Americas',
+    age: 29,
+    language: 'Ruby',
+  },
+  {
+    firstName: 'George',
+    lastName: 'B.',
+    country: 'England',
+    continent: 'Europe',
+    age: 81,
+    language: 'C',
+  },
 ]);
 
 const countLanguages2 = (list) =>
@@ -2024,17 +2165,38 @@ const countLanguages2 = (list) =>
   }, {});
 console.log(
   countLanguages2([
-    { firstName: "Noah", lastName: "M.", country: "Switzerland", continent: "Europe", age: 19, language: "C" },
     {
-      firstName: "Anna",
-      lastName: "R.",
-      country: "Liechtenstein",
-      continent: "Europe",
-      age: 52,
-      language: "JavaScript",
+      firstName: 'Noah',
+      lastName: 'M.',
+      country: 'Switzerland',
+      continent: 'Europe',
+      age: 19,
+      language: 'C',
     },
-    { firstName: "Ramon", lastName: "R.", country: "Paraguay", continent: "Americas", age: 29, language: "Ruby" },
-    { firstName: "George", lastName: "B.", country: "England", continent: "Europe", age: 81, language: "C" },
+    {
+      firstName: 'Anna',
+      lastName: 'R.',
+      country: 'Liechtenstein',
+      continent: 'Europe',
+      age: 52,
+      language: 'JavaScript',
+    },
+    {
+      firstName: 'Ramon',
+      lastName: 'R.',
+      country: 'Paraguay',
+      continent: 'Americas',
+      age: 29,
+      language: 'Ruby',
+    },
+    {
+      firstName: 'George',
+      lastName: 'B.',
+      country: 'England',
+      continent: 'Europe',
+      age: 81,
+      language: 'C',
+    },
   ])
 );
 //? //////////////////////////////////////////////////////////////////////////
@@ -2055,7 +2217,21 @@ console.log(
 // ];
 // your function should return true.
 
-const isSameLanguage = (list) => list.every((developer) => developer.language === list[0].language);
+const isSameLanguage = (list) =>
+  list.every((developer) => developer.language === list[0].language);
 //? //////////////////////////////////////////////////////////////////////////
 
-// //? 56.
+// //? 56.Coding Meetup #11 - Higher-Order Functions Series - Find the average age
+
+// You will be given a sequence of objects representing data about developers who have signed up to attend the next coding meetup that you are organising.
+
+// Given the following input array:
+
+// var list1 = [
+//   { firstName: 'Maria', lastName: 'Y.', country: 'Cyprus', continent: 'Europe', age: 30, language: 'Java' },
+//   { firstName: 'Victoria', lastName: 'T.', country: 'Puerto Rico', continent: 'Americas', age: 70, language: 'Python' },
+// ];
+// write a function that returns the average age of developers (rounded to the nearest integer). In the example above your function should return 50 (number).
+
+const getAverageAge = (list) =>
+  Math.round(list.reduce((acc, cur) => acc + cur.age, 0) / list.length);
