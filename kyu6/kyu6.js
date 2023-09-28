@@ -28,7 +28,11 @@ console.log(getParticipants(7));
 // "(( @"     =>  "))(("
 
 const duplicateEncode = (word) =>
-  [...word.toLowerCase()].map((letter, i, arr) => (arr.filter((el) => el === letter).length > 1 ? ")" : "(")).join("");
+  [...word.toLowerCase()]
+    .map((letter, i, arr) =>
+      arr.filter((el) => el === letter).length > 1 ? ')' : '('
+    )
+    .join('');
 //variant using regex pattern
 //алгоритм:
 // 1. перевожу всю строку в нижний регистр
@@ -36,10 +40,12 @@ const duplicateEncode = (word) =>
 
 const duplicateEncode2 = (word) => {
   word = word.toLowerCase();
-  return word.replace(/./g, (letter) => (word.indexOf(letter) === word.lastIndexOf(letter) ? "(" : ")"));
+  return word.replace(/./g, (letter) =>
+    word.indexOf(letter) === word.lastIndexOf(letter) ? '(' : ')'
+  );
 };
 
-console.log(duplicateEncode2("recede"));
+console.log(duplicateEncode2('recede'));
 //? //////////////////////////////////////////////////////////////////////////////
 
 //?3. N-th Fibonacci
@@ -52,7 +58,8 @@ console.log(duplicateEncode2("recede"));
 
 // For reference, the first two numbers in the Fibonacci sequence are 0 and 1, and each subsequent number is the sum of the previous two.
 //variant recursion
-const nthFiboRecursion = (n) => (n < 2 ? 0 : n === 2 ? 1 : nthFiboRecursion(n - 1) + nthFiboRecursion(n - 2));
+const nthFiboRecursion = (n) =>
+  n < 2 ? 0 : n === 2 ? 1 : nthFiboRecursion(n - 1) + nthFiboRecursion(n - 2);
 
 //variant by for
 const nthFibo = (n) => {
@@ -84,7 +91,11 @@ const deepCount = (arr) => {
 };
 console.log(deepCount([1, 2, [3, 4, [5]]]));
 
-const deepCount2 = (arr) => arr.reduce((acc, cur) => acc + (Array.isArray(cur) ? deepCount2(cur) : 0), arr.length);
+const deepCount2 = (arr) =>
+  arr.reduce(
+    (acc, cur) => acc + (Array.isArray(cur) ? deepCount2(cur) : 0),
+    arr.length
+  );
 console.log(deepCount2([1, 2, [3, 4, [5]]]));
 //? ///////////////////////////////////////////////////////////////////////////
 
@@ -108,7 +119,9 @@ console.log(deepCount2([1, 2, [3, 4, [5]]]));
 // I have created other katas. Have a look if you like coding and challenges.
 //алгоритм: нужно превратить матрицу в массив длин вложенных массивов и отсортировать их Далее в этой последовательности найти недостающее звено
 function getLengthOfMissingArray(arr) {
-  const lengths = (arr ?? []).map((el) => (el ? el.length : 0)).sort((a, b) => a - b);
+  const lengths = (arr ?? [])
+    .map((el) => (el ? el.length : 0))
+    .sort((a, b) => a - b);
 
   if (!lengths.length || lengths.includes(0)) return 0;
   //проверка на пропущенный элемент в массиве
@@ -117,7 +130,9 @@ function getLengthOfMissingArray(arr) {
   }
 }
 
-console.log(getLengthOfMissingArray([[1, 2], [4, 5, 1, 1], [1], [5, 6, 7, 8, 9]]));
+console.log(
+  getLengthOfMissingArray([[1, 2], [4, 5, 1, 1], [1], [5, 6, 7, 8, 9]])
+);
 //? ///////////////////////////////////////////////////////////////////////////
 
 //?6.Coding Meetup #7 - Higher-Order Functions Series - Find the most senior developer
@@ -144,14 +159,45 @@ console.log(getLengthOfMissingArray([[1, 2], [4, 5, 1, 1], [1], [5, 6, 7, 8, 9]]
 // The input array will always be valid and formatted as in the example above and will never be empty.
 //1. find max age 2. filter by this
 
-const findSenior = (list) => list.filter((developer) => developer.age === Math.max(...list.map((x) => x.age)));
+const findSenior = (list) =>
+  list.filter(
+    (developer) => developer.age === Math.max(...list.map((x) => x.age))
+  );
 
 console.log(
   findSenior([
-    { firstName: "Gabriel", lastName: "X.", country: "Monaco", continent: "Europe", age: 49, language: "PHP" },
-    { firstName: "Odval", lastName: "F.", country: "Mongolia", continent: "Asia", age: 38, language: "Python" },
-    { firstName: "Emilija", lastName: "S.", country: "Lithuania", continent: "Europe", age: 19, language: "Python" },
-    { firstName: "Sou", lastName: "B.", country: "Japan", continent: "Asia", age: 49, language: "PHP" },
+    {
+      firstName: 'Gabriel',
+      lastName: 'X.',
+      country: 'Monaco',
+      continent: 'Europe',
+      age: 49,
+      language: 'PHP',
+    },
+    {
+      firstName: 'Odval',
+      lastName: 'F.',
+      country: 'Mongolia',
+      continent: 'Asia',
+      age: 38,
+      language: 'Python',
+    },
+    {
+      firstName: 'Emilija',
+      lastName: 'S.',
+      country: 'Lithuania',
+      continent: 'Europe',
+      age: 19,
+      language: 'Python',
+    },
+    {
+      firstName: 'Sou',
+      lastName: 'B.',
+      country: 'Japan',
+      continent: 'Asia',
+      age: 49,
+      language: 'PHP',
+    },
   ])
 );
 //? //////////////////////////////////////////////////////////////////////////
@@ -179,8 +225,9 @@ console.log(
 // The input array and continent names will always be valid and formatted as in the list above for example 'Africa' will always start with upper-case 'A'.
 //1. get array continents 2. get Set form this array 3. compare it`s length - must be === 5
 
-const allContinents = (list) => [...new Set(list.map((dev) => dev.continent))].length >= 5;
-console.log("hello");
+const allContinents = (list) =>
+  [...new Set(list.map((dev) => dev.continent))].length >= 5;
+console.log('hello');
 
 //? //////////////////////////////////////////////////////////////////////////
 
@@ -199,16 +246,86 @@ const isAgeDiverse = (list) => {
 
 console.log(
   isAgeDiverse([
-    { firstName: "Harry", lastName: "K.", country: "Brazil", continent: "Americas", age: 19, language: "Python" },
-    { firstName: "Kseniya", lastName: "T.", country: "Belarus", continent: "Europe", age: 29, language: "JavaScript" },
-    { firstName: "Jing", lastName: "X.", country: "China", continent: "Asia", age: 39, language: "Ruby" },
-    { firstName: "Noa", lastName: "A.", country: "Israel", continent: "Asia", age: 40, language: "Ruby" },
-    { firstName: "Andrei", lastName: "E.", country: "Romania", continent: "Europe", age: 59, language: "C" },
-    { firstName: "Maria", lastName: "S.", country: "Peru", continent: "Americas", age: 60, language: "C" },
-    { firstName: "Lukas", lastName: "X.", country: "Croatia", continent: "Europe", age: 75, language: "Python" },
-    { firstName: "Chloe", lastName: "K.", country: "Guernsey", continent: "Europe", age: 88, language: "Ruby" },
-    { firstName: "Viktoria", lastName: "W.", country: "Bulgaria", continent: "Europe", age: 98, language: "PHP" },
-    { firstName: "Piotr", lastName: "B.", country: "Poland", continent: "Europe", age: 128, language: "JavaScript" },
+    {
+      firstName: 'Harry',
+      lastName: 'K.',
+      country: 'Brazil',
+      continent: 'Americas',
+      age: 19,
+      language: 'Python',
+    },
+    {
+      firstName: 'Kseniya',
+      lastName: 'T.',
+      country: 'Belarus',
+      continent: 'Europe',
+      age: 29,
+      language: 'JavaScript',
+    },
+    {
+      firstName: 'Jing',
+      lastName: 'X.',
+      country: 'China',
+      continent: 'Asia',
+      age: 39,
+      language: 'Ruby',
+    },
+    {
+      firstName: 'Noa',
+      lastName: 'A.',
+      country: 'Israel',
+      continent: 'Asia',
+      age: 40,
+      language: 'Ruby',
+    },
+    {
+      firstName: 'Andrei',
+      lastName: 'E.',
+      country: 'Romania',
+      continent: 'Europe',
+      age: 59,
+      language: 'C',
+    },
+    {
+      firstName: 'Maria',
+      lastName: 'S.',
+      country: 'Peru',
+      continent: 'Americas',
+      age: 60,
+      language: 'C',
+    },
+    {
+      firstName: 'Lukas',
+      lastName: 'X.',
+      country: 'Croatia',
+      continent: 'Europe',
+      age: 75,
+      language: 'Python',
+    },
+    {
+      firstName: 'Chloe',
+      lastName: 'K.',
+      country: 'Guernsey',
+      continent: 'Europe',
+      age: 88,
+      language: 'Ruby',
+    },
+    {
+      firstName: 'Viktoria',
+      lastName: 'W.',
+      country: 'Bulgaria',
+      continent: 'Europe',
+      age: 98,
+      language: 'PHP',
+    },
+    {
+      firstName: 'Piotr',
+      lastName: 'B.',
+      country: 'Poland',
+      continent: 'Europe',
+      age: 128,
+      language: 'JavaScript',
+    },
   ])
 );
 
@@ -244,35 +361,175 @@ console.log(
 const addUsername = (list) =>
   list.map((developer) => ({
     ...developer,
-    username: `${developer.firstName.toLowerCase()}${developer.lastName.replace(/\./, "").toLowerCase()}${
-      new Date().getFullYear() - developer.age
-    }`,
+    username: `${developer.firstName.toLowerCase()}${developer.lastName
+      .replace(/\./, '')
+      .toLowerCase()}${new Date().getFullYear() - developer.age}`,
   }));
 
 console.log(
   addUsername([
     {
-      firstName: "Emily",
-      lastName: "N.",
-      country: "Ireland",
-      continent: "Europe",
+      firstName: 'Emily',
+      lastName: 'N.',
+      country: 'Ireland',
+      continent: 'Europe',
       age: 30,
-      language: "Ruby",
-      username: "emilyn1990",
+      language: 'Ruby',
+      username: 'emilyn1990',
     },
     {
-      firstName: "Nor",
-      lastName: "E.",
-      country: "Malaysia",
-      continent: "Asia",
+      firstName: 'Nor',
+      lastName: 'E.',
+      country: 'Malaysia',
+      continent: 'Asia',
       age: 20,
-      language: "Clojure",
-      username: "nore2000",
+      language: 'Clojure',
+      username: 'nore2000',
     },
   ])
 );
 
-
 //? //////////////////////////////////////////////////////////////////////////
 
-// //? 10.
+// //? 10.Coding Meetup #13 - Higher-Order Functions Series - Is the meetup language-diverse?
+// You will be given an array of objects representing data about developers who have signed up to attend the next web development meetup that you are organising. Three programming languages will be represented: Python, Ruby and JavaScript.
+
+// Your task is to return either:
+
+// true if the number of meetup participants representing any of the three programming languages is ** at most 2 times higher than the number of developers representing any of the remaining programming languages**; or
+// false otherwise.
+// For example, given the following input array:
+
+// var list1 = [
+//   { firstName: 'Daniel', lastName: 'J.', country: 'Aruba', continent: 'Americas', age: 42, language: 'Python' },
+//   { firstName: 'Kseniya', lastName: 'T.', country: 'Belarus', continent: 'Europe', age: 22, language: 'Ruby' },
+//   { firstName: 'Sou', lastName: 'B.', country: 'Japan', continent: 'Asia', age: 43, language: 'Ruby' },
+//   { firstName: 'Hanna', lastName: 'L.', country: 'Hungary', continent: 'Europe', age: 95, language: 'JavaScript' },
+//   { firstName: 'Jayden', lastName: 'P.', country: 'Jamaica', continent: 'Americas', age: 18, language: 'JavaScript' },
+//   { firstName: 'Joao', lastName: 'D.', country: 'Portugal', continent: 'Europe', age: 25, language: 'JavaScript' }
+// ];
+// your function should return false as the number of JavaScript developers (3) is 3 times higher than the number of Python developers (1). It can't be more than 2 times higher to be regarded as language-diverse.
+
+// Notes:
+
+// The strings representing all three programming languages will always be formatted in the same way (e.g. 'JavaScript' will always be formatted with upper-case 'J' and 'S'.
+// The input array will always be valid and formatted as in the example above.
+// Each of the 3 programming languages will always be represented.
+
+const isLanguageDiverse = (list) =>
+  list.reduce((acc, cur) => {
+    acc[cur.language] = (acc[cur.language] ?? 0) + 1;
+
+    return acc;
+  }, {});
+
+console.log(
+  isLanguageDiverse([
+    {
+      firstName: 'Daniel',
+      lastName: 'J.',
+      country: 'Aruba',
+      continent: 'Americas',
+      age: 42,
+      language: 'Python',
+    },
+    {
+      firstName: 'Kseniya',
+      lastName: 'T.',
+      country: 'Belarus',
+      continent: 'Europe',
+      age: 22,
+      language: 'Ruby',
+    },
+    {
+      firstName: 'Sou',
+      lastName: 'B.',
+      country: 'Japan',
+      continent: 'Asia',
+      age: 43,
+      language: 'Ruby',
+    },
+    {
+      firstName: 'Hanna',
+      lastName: 'L.',
+      country: 'Hungary',
+      continent: 'Europe',
+      age: 95,
+      language: 'JavaScript',
+    },
+    {
+      firstName: 'Jayden',
+      lastName: 'P.',
+      country: 'Jamaica',
+      continent: 'Americas',
+      age: 18,
+      language: 'JavaScript',
+    },
+    {
+      firstName: 'Joao',
+      lastName: 'D.',
+      country: 'Portugal',
+      continent: 'Europe',
+      age: 25,
+      language: 'JavaScript',
+    },
+  ])
+);
+//? /////////////////////////////////////////////////////////////////////////////////////////
+
+//?11. Coding Meetup #15 - Higher-Order Functions Series - Find the odd names
+// You will be given an array of objects representing data about developers who have signed up to attend the next coding meetup that you are organising.
+
+// Given the following input array:
+
+// var list1 = [
+//   { firstName: 'Aba', lastName: 'N.', country: 'Ghana', continent: 'Africa', age: 21, language: 'Python' },
+//   { firstName: 'Abb', lastName: 'O.', country: 'Israel', continent: 'Asia', age: 39, language: 'Java' }
+// ];
+// write a function that when executed as findOddNames(list1) returns only the developers where if you add the ASCII representation of all characters in their first names, the result will be an odd number:
+
+// [
+//   { firstName: 'Abb', lastName: 'O.', country: 'Israel', continent: 'Asia', age: 39, language: 'Java' }
+// ]
+// Explanation of the above:
+
+// Sum of ASCII codes of letters in 'Aba' is: 65 + 98 + 97 = 260 which is an even number
+// Sum of ASCII codes of letters in 'Abb' is: 65 + 98 + 98 = 261 which is an odd number
+// Notes:
+
+// Preserve the order of the original list.
+// Return an empty array [] if there is no developer with an "odd" name.
+// The input array and first names will always be valid and formatted as in the example above.
+
+console.log('a'.charCodeAt(0));
+
+function findOddNames(list) {
+  return list.filter(
+    (developer) =>
+      [...developer.firstName].reduce(
+        (acc, cur) => acc + cur.charCodeAt(0),
+        0
+      ) % 2
+  );
+}
+
+console.log(
+  findOddNames([
+    {
+      firstName: 'Aba',
+      lastName: 'N.',
+      country: 'Ghana',
+      continent: 'Africa',
+      age: 21,
+      language: 'Python',
+    },
+    {
+      firstName: 'Abb',
+      lastName: 'O.',
+      country: 'Israel',
+      continent: 'Asia',
+      age: 39,
+      language: 'Java',
+    },
+  ])
+);
