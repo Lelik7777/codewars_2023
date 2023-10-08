@@ -2388,5 +2388,63 @@ console.log(
 );
 
 //? //////////////////////////////////////////////////////////////////////////
+// tasks for copy and deep copy
+const students = [
+  {
+    name: "Bob",
+    age: 22,
+    isMarried: true,
+    scores: 85,
+  },
+  {
+    name: "Alex",
+    age: 21,
+    isMarried: true,
+    scores: 90,
+  },
+  {
+    name: "Nick",
+    age: 20,
+    isMarried: false,
+    scores: 120,
+  },
+  {
+    name: "John",
+    age: 19,
+    isMarried: false,
+    scores: 100,
+  },
+  {
+    name: "Helen",
+    age: 20,
+    isMarried: false,
+    scores: 110,
+  },
+  {
+    name: "Ann",
+    age: 20,
+    isMarried: false,
+    scores: 105,
+  },
+];
 
-//? 59.
+const user = {
+  name: "Bob",
+  age: 23,
+  isMarried: false,
+  friends: ["Alex", "Nick", "John"],
+};
+const copy={...user,friends:[...user.friends]};
+console.log(copy.friends===user.friends);
+const copyS=students.map(x=>({...x}));
+console.log(copyS[0]===students[0]);
+copyS.sort((a,b)=>b.scores-a.scores);
+//copyS.sort((a,b)=>a.name-b.name);
+console.log(copyS);
+console.log(copyS.slice(0,3));
+console.log(copyS.map(st=>({...st,isStudent:true})));
+console.log(copyS.find(st=>st.name=='Ann'));
+console.log(copyS.reduce((acc,cur)=>acc+cur.scores,0));
+
+const friends=copyS.map(st=>st.name);
+console.log(copyS.map(st=>));
