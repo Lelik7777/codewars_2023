@@ -560,21 +560,116 @@ console.log(
 // ]
 
 function askForMissingDetails(list) {
-  return list.filter(dev=>{
-    const indexNull=Object.values(dev).findIndex(x=>x===null);
-if(indexNull!==-1){
-  dev.question=`Hi, could you please provide your ${Object.keys(dev)[indexNull]}`;
-  return dev;
+  return list.filter((dev) => {
+    const indexNull = Object.values(dev).findIndex((x) => x === null);
+    if (indexNull !== -1) {
+      dev.question = `Hi, could you please provide your ${
+        Object.keys(dev)[indexNull]
+      }`;
+      return dev;
+    }
+  });
 }
-})
+console.log(
+  Object.values(
+    [
+      {
+        firstName: null,
+        lastName: 'I.',
+        country: 'Argentina',
+        continent: 'Americas',
+        age: 35,
+        language: 'Java',
+      },
+      {
+        firstName: 'Lukas',
+        lastName: 'X.',
+        country: 'Croatia',
+        continent: 'Europe',
+        age: 35,
+        language: null,
+      },
+      {
+        firstName: 'Madison',
+        lastName: 'U.',
+        country: 'United States',
+        continent: 'Americas',
+        age: 32,
+        language: 'Ruby',
+      },
+    ][0]
+  ).findIndex((x) => x == null)
+);
+console.log(
+  askForMissingDetails([
+    {
+      firstName: null,
+      lastName: 'I.',
+      country: 'Argentina',
+      continent: 'Americas',
+      age: 35,
+      language: 'Java',
+    },
+    {
+      firstName: 'Lukas',
+      lastName: 'X.',
+      country: 'Croatia',
+      continent: 'Europe',
+      age: 35,
+      language: null,
+    },
+    {
+      firstName: 'Madison',
+      lastName: 'U.',
+      country: 'United States',
+      continent: 'Americas',
+      age: 32,
+      language: 'Ruby',
+    },
+  ])
+);
+
+//? /////////////////////////////////////////////////////////////////////////////////////////
+
+//?13. Valid Braces
+// Write a function that takes a string of braces, and determines if the order of the braces is valid. It should return true if the string is valid, and false if it's invalid.
+
+// This Kata is similar to the Valid Parentheses Kata, but introduces new characters: brackets [], and curly braces {}. Thanks to @arnedag for the idea!
+
+// All input strings will be nonempty, and will only consist of parentheses, brackets and curly braces: ()[]{}.
+
+// What is considered Valid?
+// A string of braces is considered valid if all braces are matched with the correct brace.
+
+// Examples
+// "(){}[]"   =>  True
+// "([{}])"   =>  True
+// "(}"       =>  False
+// "[(])"     =>  False
+// "[({})](]" =>  False
+
+function validBraces(braces) {
+  const openBraces = ['(', '[', '{'];
+  const bracesPairs = {
+    [')']: '(',
+    [']']: '[',
+    ['}']: '{',
+  };
+  const stack = [];
+  for (let i = 0; i < braces.length; i++) {
+    if (openBraces.includes(braces[i])) {
+      stack.push(braces[i]);
+    } else {
+      if (!stack.length) {
+        return false;
+      }
+      let topElStack = stack[stack.length - 1];
+      if (topElStack === bracesPairs[braces[i]]) {
+        stack.pop();
+      } else {
+        return false;
+      }
+    }
+  }
+  return stack.length === 0;
 }
-console.log(Object.values([
-  { firstName: null, lastName: 'I.', country: 'Argentina', continent: 'Americas', age: 35, language: 'Java' },
-  { firstName: 'Lukas', lastName: 'X.', country: 'Croatia', continent: 'Europe', age: 35, language: null },
-  { firstName: 'Madison', lastName: 'U.', country: 'United States', continent: 'Americas', age: 32, language: 'Ruby' }
-][0]).findIndex(x=>x==null));
-console.log(askForMissingDetails([
-  { firstName: null, lastName: 'I.', country: 'Argentina', continent: 'Americas', age: 35, language: 'Java' },
-  { firstName: 'Lukas', lastName: 'X.', country: 'Croatia', continent: 'Europe', age: 35, language: null },
-  { firstName: 'Madison', lastName: 'U.', country: 'United States', continent: 'Americas', age: 32, language: 'Ruby' }
-]));
