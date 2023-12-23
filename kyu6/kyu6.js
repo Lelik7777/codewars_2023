@@ -673,3 +673,27 @@ function validBraces(braces) {
   }
   return stack.length === 0;
 }
+//? /////////////////////////////////////////////////////////////////////////////////////////
+
+//?14. Validate my Password
+// I will give you a string. You respond with "VALID" if the string meets the requirements or "INVALID" if it does not.
+
+// Passwords must abide by the following requirements:
+
+// More than 3 characters but less than 20.
+
+// Must contain only alphanumeric characters.
+
+//Must contain letters and numbers.
+
+function validPass(password) {
+  return /^(?=.*\d)(?=.*[A-Za-z])[A-Za-z0-9]{4,19}$/.test(password)
+    ? 'VALID'
+    : 'INVALID';
+}
+// function validPass(password) {
+//   return /\d\w$/.test(password) && password > 3 && password < 20
+//     ? 'VALID'
+//     : 'INVALID';
+// }
+console.log(validPass('Username'));
